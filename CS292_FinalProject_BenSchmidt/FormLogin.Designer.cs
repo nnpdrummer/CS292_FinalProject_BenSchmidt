@@ -38,6 +38,7 @@
             this.grpLogin = new System.Windows.Forms.GroupBox();
             this.btnBackToMain = new System.Windows.Forms.Button();
             this.picLogin = new System.Windows.Forms.PictureBox();
+            this.toolTipLogin = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             this.grpLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogin)).BeginInit();
@@ -151,5 +152,6 @@
         private System.Windows.Forms.GroupBox grpLogin;
         private System.Windows.Forms.Button btnBackToMain;
         private System.Windows.Forms.PictureBox picLogin;
+        private System.Windows.Forms.ToolTip toolTipLogin;
     }
 }
