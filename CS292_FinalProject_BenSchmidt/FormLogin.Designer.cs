@@ -131,6 +131,8 @@
             this.Controls.Add(this.picLogin);
             this.Controls.Add(this.btnBackToMain);
             this.Controls.Add(this.grpLogin);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).EndInit();
