@@ -47,34 +47,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormOfficials.cs">
+    <Compile Include="frmOfficials.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOfficials.Designer.cs">
-      <DependentUpon>FormOfficials.cs</DependentUpon>
+    <Compile Include="frmOfficials.Designer.cs">
+      <DependentUpon>frmOfficials.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStart.cs">
+    <Compile Include="frmStartScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStart.Designer.cs">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <Compile Include="frmStartScreen.Designer.cs">
+      <DependentUpon>frmStartScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormOfficials.resx">
-      <DependentUpon>FormOfficials.cs</DependentUpon>
+    <EmbeddedResource Include="frmOfficials.resx">
+      <DependentUpon>frmOfficials.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStart.resx">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <EmbeddedResource Include="frmStartScreen.resx">
+      <DependentUpon>frmStartScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
-      <DependentUpon>FormLogin.cs</DependentUpon>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -84,6 +84,7 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Log in";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // errorProviderLogin
             // 
@@ -112,6 +113,7 @@
             this.btnBackToMain.TabIndex = 6;
             this.btnBackToMain.Text = "Back to Main";
             this.btnBackToMain.UseVisualStyleBackColor = true;
+            this.btnBackToMain.Click += new System.EventHandler(this.btnBackToMain_Click);
             // 
             // picLogin
             // 
@@ -135,6 +137,7 @@
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).EndInit();
             this.grpLogin.ResumeLayout(false);
             this.grpLogin.PerformLayout();

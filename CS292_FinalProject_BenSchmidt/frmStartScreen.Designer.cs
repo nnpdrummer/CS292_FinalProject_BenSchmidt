@@ -32,8 +32,11 @@
             this.dgv = new System.Windows.Forms.DataGridView();
             this.btnOfficialLogin = new System.Windows.Forms.Button();
             this.grpSearchFilter = new System.Windows.Forms.GroupBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radSimilarMatch = new System.Windows.Forms.RadioButton();
+            this.radExactMatch = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearchPlayerName = new System.Windows.Forms.TextBox();
             this.cboPosition = new System.Windows.Forms.ComboBox();
@@ -42,14 +45,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkEnableSearchFilter = new System.Windows.Forms.CheckBox();
             this.errorProviderStart = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTipStart = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.radExactMatch = new System.Windows.Forms.RadioButton();
-            this.radSimilarMatch = new System.Windows.Forms.RadioButton();
-            this.btnClear = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.grpSearchFilter.SuspendLayout();
@@ -76,6 +76,7 @@
             this.btnOfficialLogin.Text = "Official Login";
             this.toolTipStart.SetToolTip(this.btnOfficialLogin, "Login Portal for League Officials only");
             this.btnOfficialLogin.UseVisualStyleBackColor = true;
+            this.btnOfficialLogin.Click += new System.EventHandler(this.btnOfficialLogin_Click);
             // 
             // grpSearchFilter
             // 
@@ -92,6 +93,18 @@
             this.grpSearchFilter.TabIndex = 12;
             this.grpSearchFilter.TabStop = false;
             this.grpSearchFilter.Text = "Search Filter";
+            this.grpSearchFilter.Visible = false;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(117, 135);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 19;
+            this.btnClear.Text = "Clear";
+            this.toolTipStart.SetToolTip(this.btnClear, "Resets the search filters back to their default states");
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnSearch
             // 
@@ -102,6 +115,7 @@
             this.btnSearch.Text = "Search";
             this.toolTipStart.SetToolTip(this.btnSearch, "Searches for the player(s) that most closely match the search conditions above");
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel1
             // 
@@ -114,6 +128,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(210, 56);
             this.panel1.TabIndex = 15;
+            // 
+            // radSimilarMatch
+            // 
+            this.radSimilarMatch.AutoSize = true;
+            this.radSimilarMatch.Location = new System.Drawing.Point(106, 33);
+            this.radSimilarMatch.Name = "radSimilarMatch";
+            this.radSimilarMatch.Size = new System.Drawing.Size(88, 17);
+            this.radSimilarMatch.TabIndex = 16;
+            this.radSimilarMatch.TabStop = true;
+            this.radSimilarMatch.Text = "Similar Match";
+            this.toolTipStart.SetToolTip(this.radSimilarMatch, "Searches for the player(s) that most resemble the name entered above");
+            this.radSimilarMatch.UseVisualStyleBackColor = true;
+            // 
+            // radExactMatch
+            // 
+            this.radExactMatch.AutoSize = true;
+            this.radExactMatch.Location = new System.Drawing.Point(15, 33);
+            this.radExactMatch.Name = "radExactMatch";
+            this.radExactMatch.Size = new System.Drawing.Size(85, 17);
+            this.radExactMatch.TabIndex = 15;
+            this.radExactMatch.TabStop = true;
+            this.radExactMatch.Text = "Exact Match";
+            this.toolTipStart.SetToolTip(this.radExactMatch, "Looks for the player with the exact name entered above");
+            this.radExactMatch.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -185,17 +223,19 @@
             this.btnExit.Text = "Exit";
             this.toolTipStart.SetToolTip(this.btnExit, "Closes the program");
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // checkBox1
+            // chkEnableSearchFilter
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(674, 213);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(121, 17);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "Enable Search Filter";
-            this.toolTipStart.SetToolTip(this.checkBox1, "Provides additional information to search by");
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkEnableSearchFilter.AutoSize = true;
+            this.chkEnableSearchFilter.Location = new System.Drawing.Point(674, 213);
+            this.chkEnableSearchFilter.Name = "chkEnableSearchFilter";
+            this.chkEnableSearchFilter.Size = new System.Drawing.Size(121, 17);
+            this.chkEnableSearchFilter.TabIndex = 15;
+            this.chkEnableSearchFilter.Text = "Enable Search Filter";
+            this.toolTipStart.SetToolTip(this.chkEnableSearchFilter, "Provides additional information to search by");
+            this.chkEnableSearchFilter.UseVisualStyleBackColor = true;
+            this.chkEnableSearchFilter.CheckedChanged += new System.EventHandler(this.chkEnableSearchFilter_CheckedChanged);
             // 
             // errorProviderStart
             // 
@@ -216,40 +256,6 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 17);
             // 
-            // radExactMatch
-            // 
-            this.radExactMatch.AutoSize = true;
-            this.radExactMatch.Location = new System.Drawing.Point(15, 33);
-            this.radExactMatch.Name = "radExactMatch";
-            this.radExactMatch.Size = new System.Drawing.Size(85, 17);
-            this.radExactMatch.TabIndex = 15;
-            this.radExactMatch.TabStop = true;
-            this.radExactMatch.Text = "Exact Match";
-            this.toolTipStart.SetToolTip(this.radExactMatch, "Looks for the player with the exact name entered above");
-            this.radExactMatch.UseVisualStyleBackColor = true;
-            // 
-            // radSimilarMatch
-            // 
-            this.radSimilarMatch.AutoSize = true;
-            this.radSimilarMatch.Location = new System.Drawing.Point(106, 33);
-            this.radSimilarMatch.Name = "radSimilarMatch";
-            this.radSimilarMatch.Size = new System.Drawing.Size(88, 17);
-            this.radSimilarMatch.TabIndex = 16;
-            this.radSimilarMatch.TabStop = true;
-            this.radSimilarMatch.Text = "Similar Match";
-            this.toolTipStart.SetToolTip(this.radSimilarMatch, "Searches for the player(s) that most resemble the name entered above");
-            this.radSimilarMatch.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(117, 135);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 19;
-            this.btnClear.Text = "Clear";
-            this.toolTipStart.SetToolTip(this.btnClear, "Resets the search filters back to their default states");
-            this.btnClear.UseVisualStyleBackColor = true;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(621, 13);
@@ -267,7 +273,7 @@
             this.ClientSize = new System.Drawing.Size(857, 426);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkEnableSearchFilter);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.grpSearchFilter);
@@ -277,6 +283,7 @@
             this.MaximizeBox = false;
             this.Name = "frmStartScreen";
             this.Text = "Start Screen";
+            this.Load += new System.EventHandler(this.frmStartScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.grpSearchFilter.ResumeLayout(false);
             this.grpSearchFilter.PerformLayout();
@@ -306,7 +313,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnShowAll;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkEnableSearchFilter;
         private System.Windows.Forms.ErrorProvider errorProviderStart;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;

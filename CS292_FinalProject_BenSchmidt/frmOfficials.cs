@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CS292_FinalProject_BenSchmidt
 {
-    public partial class frmLogin : Form
+    public partial class frmOfficials : Form
     {
-        public frmLogin()
+        public frmOfficials()
         {
             InitializeComponent();
         }

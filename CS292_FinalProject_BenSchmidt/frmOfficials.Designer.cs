@@ -1,6 +1,6 @@
 ﻿namespace CS292_FinalProject_BenSchmidt
 {
-    partial class FormOfficials
+    partial class frmOfficials
     {
         /// <summary>
         /// Required designer variable.
