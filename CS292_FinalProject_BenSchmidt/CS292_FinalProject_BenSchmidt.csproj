@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAdditionalPlayerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdditionalPlayerInfo.Designer.cs">
+      <DependentUpon>frmAdditionalPlayerInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOfficials.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAdditionalPlayerInfo.resx">
+      <DependentUpon>frmAdditionalPlayerInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmOfficials.resx">
       <DependentUpon>frmOfficials.cs</DependentUpon>
     </EmbeddedResource>
