@@ -22,7 +22,7 @@ namespace CS292_FinalProject_BenSchmidt
             btnClear_Click(null, null);
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)// TODO: fix this
         {
             foreach (Control c in Controls)
             {
