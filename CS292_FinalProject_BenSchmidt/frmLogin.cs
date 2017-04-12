@@ -14,11 +14,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace CS292_FinalProject_BenSchmidt
 {
     public partial class frmLogin : Form
     {
+        private const string DB_FOOTBALL = "Data Source = ../../highSchoolFootball.db; Version = 3";
+        private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
+        private string sql;
+
         public frmLogin() { InitializeComponent(); }
 
         /// <summary>
@@ -50,15 +55,26 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+            string username = txtLoginUsername.Text;
+            string password = txtLoginPassword.Text;
+            sql = "SELECT COUNT(*) FROM LeagueOfficials WHERE Username = @Username AND Password = @Password";
+            connection.Open();
 
+            SQLiteCommand cmd = new SQLiteCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@Username", txtLoginUsername.Text);
+            cmd.Parameters.AddWithValue("@Password", txtLoginPassword.Text);
+            int linesCounted = Convert.ToInt32(cmd.ExecuteScalar());
+            connection.Close();
 
-
-
-            frmOfficials officials = new frmOfficials();
-            this.Hide();
-            officials.ShowDialog();
-            this.Show();
+            if (linesCounted == 1)
+            {
+                frmOfficials officials = new frmOfficials();
+                this.Hide();
+                officials.ShowDialog();
+                this.Show();
+            }
+            else if (linesCounted == 0)
+                lblStatus.Text = "Username and password combination does not match an existing League Official!";
         }
 
         /// <summary>
