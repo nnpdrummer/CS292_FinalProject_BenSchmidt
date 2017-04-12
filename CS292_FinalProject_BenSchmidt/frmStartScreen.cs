@@ -81,10 +81,10 @@ namespace CS292_FinalProject_BenSchmidt
         private void btnOfficialLogin_Click(object sender, EventArgs e)
         {
             frmLogin login = new frmLogin();
-            this.Visible = false;
+            this.Hide();
             login.ShowDialog();
             resetControls();
-            this.Visible = true;
+            this.Show();
         }
 
         /// <summary>

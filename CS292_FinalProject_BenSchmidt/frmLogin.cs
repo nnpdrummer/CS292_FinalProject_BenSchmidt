@@ -49,12 +49,16 @@ namespace CS292_FinalProject_BenSchmidt
 
 
         /// <summary>
-        /// TODO: change implementation to check username and password.
+        /// Attempts to see if the user's username and password is in the LeagueOfficials
+        /// table of the highSchoolFootball database. If it is, the Officials form is shown.
+        /// If not, notifies the user that the username and password combination do not match
+        /// any credentials in the LeagueOfficals table.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            lblStatus.Text = "";
             string username = txtLoginUsername.Text;
             string password = txtLoginPassword.Text;
             sql = "SELECT COUNT(*) FROM LeagueOfficials WHERE Username = @Username AND Password = @Password";
@@ -69,6 +73,8 @@ namespace CS292_FinalProject_BenSchmidt
             if (linesCounted == 1)
             {
                 frmOfficials officials = new frmOfficials();
+                officials.setUsername(username);
+                frmLogin_Load(null, null);
                 this.Hide();
                 officials.ShowDialog();
                 this.Show();

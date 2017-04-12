@@ -17,6 +17,8 @@ namespace CS292_FinalProject_BenSchmidt
             InitializeComponent();
         }
 
+        public void setUsername(string username) { lblUsername.Text = username; }
+
         private void frmOfficials_Load(object sender, EventArgs e)
         {
             //clear controls
