@@ -33,11 +33,13 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            txtLoginUsername.Focus();
             txtLoginUsername.Clear();
             txtLoginPassword.Clear();
             txtRegUsername.Clear();
             txtRegPassword.Clear();
             lblStatus.Text = "";
+            errorProviderLogin.Clear();
         }
 
         /// <summary>
@@ -59,6 +61,7 @@ namespace CS292_FinalProject_BenSchmidt
         private void btnLogin_Click(object sender, EventArgs e)
         {
             lblStatus.Text = "";
+            errorProviderLogin.Clear();
             string username = txtLoginUsername.Text;
             string password = txtLoginPassword.Text;
             sql = "SELECT COUNT(*) FROM LeagueOfficials WHERE Username = @Username AND Password = @Password";
@@ -80,7 +83,10 @@ namespace CS292_FinalProject_BenSchmidt
                 this.Show();
             }
             else if (linesCounted == 0)
-                lblStatus.Text = "Username and password combination does not match an existing League Official!";
+            {
+                lblStatus.Text = "Username and password combination does not belong to an existing League Official!";
+                errorProviderLogin.SetError(btnLogin, "Invalid Login Credentials!");
+            }
         }
 
         /// <summary>
