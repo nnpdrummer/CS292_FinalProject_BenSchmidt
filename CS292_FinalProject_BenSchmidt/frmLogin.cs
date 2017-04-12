@@ -28,8 +28,11 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            txtUsername.Text = "";
-            txtPassword.Text = "";
+            txtLoginUsername.Clear();
+            txtLoginPassword.Clear();
+            txtRegUsername.Clear();
+            txtRegPassword.Clear();
+            lblStatus.Text = "";
         }
 
         /// <summary>
@@ -47,10 +50,25 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
+
+
+
+
             frmOfficials officials = new frmOfficials();
-            //this.Visible = false;
+            this.Hide();
             officials.ShowDialog();
-           // this.Visible = true;
+            this.Show();
+        }
+
+        /// <summary>
+        /// TODO: change implementaton to check for a unique pair of username nad password.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

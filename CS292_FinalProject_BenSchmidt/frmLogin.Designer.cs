@@ -30,25 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtLoginUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtLoginPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.errorProviderLogin = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpLogin = new System.Windows.Forms.GroupBox();
             this.btnBackToMain = new System.Windows.Forms.Button();
             this.picLogin = new System.Windows.Forms.PictureBox();
             this.toolTipLogin = new System.Windows.Forms.ToolTip(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             this.grpRegister = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.txtRegUsername = new System.Windows.Forms.TextBox();
+            this.txtRegPassword = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderLogin)).BeginInit();
             this.grpLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogin)).BeginInit();
             this.grpRegister.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -60,12 +63,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
             // 
-            // txtUsername
+            // txtLoginUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(6, 32);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 20);
-            this.txtUsername.TabIndex = 1;
+            this.txtLoginUsername.Location = new System.Drawing.Point(6, 32);
+            this.txtLoginUsername.Name = "txtLoginUsername";
+            this.txtLoginUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtLoginUsername.TabIndex = 1;
             // 
             // label2
             // 
@@ -76,12 +79,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Password:";
             // 
-            // txtPassword
+            // txtLoginPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(6, 71);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtPassword.TabIndex = 3;
+            this.txtLoginPassword.Location = new System.Drawing.Point(6, 71);
+            this.txtLoginPassword.Name = "txtLoginPassword";
+            this.txtLoginPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtLoginPassword.TabIndex = 3;
             // 
             // btnLogin
             // 
@@ -101,8 +104,8 @@
             // 
             this.grpLogin.Controls.Add(this.label1);
             this.grpLogin.Controls.Add(this.btnLogin);
-            this.grpLogin.Controls.Add(this.txtUsername);
-            this.grpLogin.Controls.Add(this.txtPassword);
+            this.grpLogin.Controls.Add(this.txtLoginUsername);
+            this.grpLogin.Controls.Add(this.txtLoginPassword);
             this.grpLogin.Controls.Add(this.label2);
             this.grpLogin.Location = new System.Drawing.Point(184, 12);
             this.grpLogin.Name = "grpLogin";
@@ -130,12 +133,22 @@
             this.picLogin.TabIndex = 7;
             this.picLogin.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 55);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Password:";
+            this.toolTipLogin.SetToolTip(this.label4, "Password must contain: ");
+            // 
             // grpRegister
             // 
             this.grpRegister.Controls.Add(this.label3);
             this.grpRegister.Controls.Add(this.btnRegister);
-            this.grpRegister.Controls.Add(this.textBox1);
-            this.grpRegister.Controls.Add(this.textBox2);
+            this.grpRegister.Controls.Add(this.txtRegUsername);
+            this.grpRegister.Controls.Add(this.txtRegPassword);
             this.grpRegister.Controls.Add(this.label4);
             this.grpRegister.Location = new System.Drawing.Point(318, 12);
             this.grpRegister.Name = "grpRegister";
@@ -161,30 +174,36 @@
             this.btnRegister.TabIndex = 4;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // textBox1
+            // txtRegUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtRegUsername.Location = new System.Drawing.Point(6, 32);
+            this.txtRegUsername.Name = "txtRegUsername";
+            this.txtRegUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtRegUsername.TabIndex = 1;
             // 
-            // textBox2
+            // txtRegPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtRegPassword.Location = new System.Drawing.Point(6, 71);
+            this.txtRegPassword.Name = "txtRegPassword";
+            this.txtRegPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtRegPassword.TabIndex = 3;
             // 
-            // label4
+            // statusStrip1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 55);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Password:";
-            this.toolTipLogin.SetToolTip(this.label4, "Password must contain: ");
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 185);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(454, 22);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // frmLogin
             // 
@@ -192,7 +211,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnBackToMain;
-            this.ClientSize = new System.Drawing.Size(454, 183);
+            this.ClientSize = new System.Drawing.Size(454, 207);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grpRegister);
             this.Controls.Add(this.picLogin);
             this.Controls.Add(this.btnBackToMain);
@@ -208,16 +228,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLogin)).EndInit();
             this.grpRegister.ResumeLayout(false);
             this.grpRegister.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtLoginUsername;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtLoginPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.ErrorProvider errorProviderLogin;
         private System.Windows.Forms.GroupBox grpLogin;
@@ -227,8 +250,10 @@
         private System.Windows.Forms.GroupBox grpRegister;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtRegUsername;
+        private System.Windows.Forms.TextBox txtRegPassword;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblStatus;
     }
 }
