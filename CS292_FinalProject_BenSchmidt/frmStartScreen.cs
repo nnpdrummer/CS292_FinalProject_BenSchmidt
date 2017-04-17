@@ -14,11 +14,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using System.IO;
 
 namespace CS292_FinalProject_BenSchmidt
 {
     public partial class frmStartScreen : Form
     {
+        private const string DB_FOOTBALL = "Data Source = ../../highSchoolFootball.db; Version = 3";
+        private const string POSITION_FILE = "positions.txt";
+        private const string SCHOOL_FILE = "schools.txt";
+        private const string STANDING_FILE = "standing.txt";
+
+        private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
+        private SQLiteDataAdapter dataAdapter;
+        private SQLiteCommand command;
+        private DataSet dataSet;
+        private String sql;
+
         public frmStartScreen() { InitializeComponent(); }
 
         /// <summary>
@@ -29,10 +42,36 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void frmStartScreen_Load(object sender, EventArgs e)
         {
+            btnShowAll_Click(null, null);
             resetControls();
+            populateComboBoxes();
             chkEnableSearchFilter.Checked = false;
             lblStatus.Text = "Welcome to the High School Football Stats Tracker!";
         }
+
+        private void populateComboBoxes()
+        {
+            try
+            {
+                string line;
+
+                StreamReader reader = new StreamReader(POSITION_FILE);
+                while((line = reader.ReadLine()) != null) cboPosition.Items.Add(line);
+
+                reader = new StreamReader(SCHOOL_FILE);
+                while((line = reader.ReadLine()) != null) cboSchool.Items.Add(line);
+
+                reader = new StreamReader(STANDING_FILE);
+                while((line = reader.ReadLine()) != null) cboStanding.Items.Add(line);
+
+                reader.Close();
+            }
+            catch
+            {
+                lblStatus.Text = POSITION_FILE + " not found!";
+            }
+        }
+
 
         /// <summary>
         /// Makes the search filter group box either visible or invisible depending 
@@ -51,13 +90,30 @@ namespace CS292_FinalProject_BenSchmidt
         }
 
         /// <summary>
-        /// Yet to be implemented.
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // Search for players with information in controls.
+            string name = txtSearchPlayerName.Text;
+            connection.Open();
+            if(radExactMatch.Checked)
+            {
+                sql = "Select Name, Position, School, Standing" +
+                " FROM StudentFootballPlayer WHERE Name = \'" + name + "\'";
+            }
+            else if(radSimilarMatch.Checked)
+            {
+                sql = "Select Name, Position, School, Standing" +
+                " FROM StudentFootballPlayer WHERE Name LIKE '%" + name + "%'";
+            }
+            dataSet = new DataSet();
+            dataAdapter = new SQLiteDataAdapter(sql, connection);
+            dataAdapter.Fill(dataSet);
+            connection.Close();
+            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
+            dgvPlayers.ClearSelection();
         }
 
         /// <summary>
@@ -92,8 +148,9 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         private void resetControls()
         {
-            cboPosition.SelectedItem = -1;
-            cboSchool.SelectedItem = -1;
+            cboPosition.SelectedIndex = -1;
+            cboSchool.SelectedIndex = -1;
+            cboStanding.SelectedIndex = -1;
             txtSearchPlayerName.Text = "";
             radExactMatch.Select();
         }
@@ -104,5 +161,86 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e) { Close(); }
+
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            connection.Open();
+            sql = "SELECT Name, School, Standing, Position FROM StudentFootballPlayer";
+            dataSet = new DataSet();
+
+            dataAdapter = new SQLiteDataAdapter(sql, connection);
+            dataAdapter.Fill(dataSet);
+            connection.Close();
+
+            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
+            dgvPlayers.ClearSelection();
+        }
+
+        private void cboPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string position = cboPosition.SelectedItem.ToString();
+            connection.Open();
+            sql = "Select Name, Position, School, Standing";
+            switch (position)
+            {
+                case "QB":
+                    sql += ", \"Passing Yards\", \"Pass Attempts\", \"Pass Completions\", \"Passing TDs\", " +
+                        "\"Passing Interceptions\"";
+                    break;
+                case "RB":
+                    sql += ", \"Rushing Yards\", \"Rushing Attempts\", \"Rushing TDs\", \"Fumbles\" ";
+                    break;
+                case "WR": case "TE":
+                    sql += ", \"Receiving Yards\", \"Receptions\", \"Receiving TDs\" ";
+                    break;
+                case "DT": case "DE": case "MLB": case "OLB": case "CB": case "S":
+                    sql += ", \"Tackles\", \"Assisted Tackles\", \"Sacks\", \"Interceptions\", \"Safeties\"" +
+                        ", \"Forced Fumbles\" ";
+                    break;
+                case "K": case "P":
+                    sql += ", \"Field Goals Attempted\", \"Field Goals Made\", \"Punt Yards\", \"Kick Yards\", \"Touchbacks\" ";
+                    break;
+                default:
+                    break;
+            }
+            sql += " FROM StudentFootballPlayer WHERE Position = \'" + position + "\'";
+
+            dataSet = new DataSet();
+            dataAdapter = new SQLiteDataAdapter(sql, connection);
+            dataAdapter.Fill(dataSet);
+            connection.Close();
+            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
+            dgvPlayers.ClearSelection();
+        }
+
+        private void cboSchool_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string school = cboSchool.SelectedItem.ToString();
+            connection.Open();
+            sql = "Select Name, Position, School, Standing" + 
+                " FROM StudentFootballPlayer WHERE School = \'" + school + "\'";
+
+            dataSet = new DataSet();
+            dataAdapter = new SQLiteDataAdapter(sql, connection);
+            dataAdapter.Fill(dataSet);
+            connection.Close();
+            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
+            dgvPlayers.ClearSelection();
+        }
+
+        private void cboStanding_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string standing = cboStanding.SelectedItem.ToString();
+            connection.Open();
+            sql = "Select Name, Position, School, Standing" +
+                " FROM StudentFootballPlayer WHERE Standing = \'" + standing + "\'";
+
+            dataSet = new DataSet();
+            dataAdapter = new SQLiteDataAdapter(sql, connection);
+            dataAdapter.Fill(dataSet);
+            connection.Close();
+            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
+            dgvPlayers.ClearSelection();
+        }
     }
 }

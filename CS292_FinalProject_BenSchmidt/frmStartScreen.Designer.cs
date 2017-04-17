@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgv = new System.Windows.Forms.DataGridView();
+            this.dgvPlayers = new System.Windows.Forms.DataGridView();
             this.btnOfficialLogin = new System.Windows.Forms.Button();
             this.grpSearchFilter = new System.Windows.Forms.GroupBox();
+            this.cboStanding = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,26 +52,24 @@
             this.toolTipStart = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).BeginInit();
             this.grpSearchFilter.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderStart)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgv
+            // dgvPlayers
             // 
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(12, 12);
-            this.dgv.Name = "dgv";
-            this.dgv.Size = new System.Drawing.Size(602, 389);
-            this.dgv.TabIndex = 3;
+            this.dgvPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlayers.Location = new System.Drawing.Point(12, 12);
+            this.dgvPlayers.Name = "dgvPlayers";
+            this.dgvPlayers.Size = new System.Drawing.Size(415, 389);
+            this.dgvPlayers.TabIndex = 3;
             // 
             // btnOfficialLogin
             // 
-            this.btnOfficialLogin.Location = new System.Drawing.Point(768, 155);
+            this.btnOfficialLogin.Location = new System.Drawing.Point(576, 97);
             this.btnOfficialLogin.Name = "btnOfficialLogin";
             this.btnOfficialLogin.Size = new System.Drawing.Size(77, 23);
             this.btnOfficialLogin.TabIndex = 4;
@@ -80,6 +80,8 @@
             // 
             // grpSearchFilter
             // 
+            this.grpSearchFilter.Controls.Add(this.cboStanding);
+            this.grpSearchFilter.Controls.Add(this.label1);
             this.grpSearchFilter.Controls.Add(this.btnClear);
             this.grpSearchFilter.Controls.Add(this.btnSearch);
             this.grpSearchFilter.Controls.Add(this.panel1);
@@ -87,17 +89,35 @@
             this.grpSearchFilter.Controls.Add(this.cboSchool);
             this.grpSearchFilter.Controls.Add(this.label3);
             this.grpSearchFilter.Controls.Add(this.label2);
-            this.grpSearchFilter.Location = new System.Drawing.Point(620, 236);
+            this.grpSearchFilter.Location = new System.Drawing.Point(432, 206);
             this.grpSearchFilter.Name = "grpSearchFilter";
-            this.grpSearchFilter.Size = new System.Drawing.Size(226, 165);
+            this.grpSearchFilter.Size = new System.Drawing.Size(226, 194);
             this.grpSearchFilter.TabIndex = 12;
             this.grpSearchFilter.TabStop = false;
             this.grpSearchFilter.Text = "Search Filter";
             this.grpSearchFilter.Visible = false;
             // 
+            // cboStanding
+            // 
+            this.cboStanding.FormattingEnabled = true;
+            this.cboStanding.Location = new System.Drawing.Point(74, 73);
+            this.cboStanding.Name = "cboStanding";
+            this.cboStanding.Size = new System.Drawing.Size(121, 21);
+            this.cboStanding.TabIndex = 20;
+            this.cboStanding.SelectedIndexChanged += new System.EventHandler(this.cboStanding_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 76);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Standing:";
+            // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(117, 135);
+            this.btnClear.Location = new System.Drawing.Point(113, 165);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 19;
@@ -108,7 +128,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(36, 135);
+            this.btnSearch.Location = new System.Drawing.Point(32, 165);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 18;
@@ -124,7 +144,7 @@
             this.panel1.Controls.Add(this.radExactMatch);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtSearchPlayerName);
-            this.panel1.Location = new System.Drawing.Point(10, 73);
+            this.panel1.Location = new System.Drawing.Point(6, 103);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(210, 56);
             this.panel1.TabIndex = 15;
@@ -176,6 +196,7 @@
             this.cboPosition.Name = "cboPosition";
             this.cboPosition.Size = new System.Drawing.Size(121, 21);
             this.cboPosition.TabIndex = 12;
+            this.cboPosition.SelectedIndexChanged += new System.EventHandler(this.cboPosition_SelectedIndexChanged);
             // 
             // cboSchool
             // 
@@ -184,6 +205,7 @@
             this.cboSchool.Name = "cboSchool";
             this.cboSchool.Size = new System.Drawing.Size(121, 21);
             this.cboSchool.TabIndex = 9;
+            this.cboSchool.SelectedIndexChanged += new System.EventHandler(this.cboSchool_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -205,18 +227,19 @@
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(620, 155);
+            this.btnShowAll.Location = new System.Drawing.Point(432, 97);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(77, 23);
             this.btnShowAll.TabIndex = 13;
             this.btnShowAll.Text = "Show All";
             this.toolTipStart.SetToolTip(this.btnShowAll, "Shows the statistics for every player in the league");
             this.btnShowAll.UseVisualStyleBackColor = true;
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(768, 184);
+            this.btnExit.Location = new System.Drawing.Point(576, 126);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(77, 23);
             this.btnExit.TabIndex = 14;
@@ -228,7 +251,7 @@
             // chkEnableSearchFilter
             // 
             this.chkEnableSearchFilter.AutoSize = true;
-            this.chkEnableSearchFilter.Location = new System.Drawing.Point(674, 213);
+            this.chkEnableSearchFilter.Location = new System.Drawing.Point(481, 155);
             this.chkEnableSearchFilter.Name = "chkEnableSearchFilter";
             this.chkEnableSearchFilter.Size = new System.Drawing.Size(121, 17);
             this.chkEnableSearchFilter.TabIndex = 15;
@@ -247,7 +270,7 @@
             this.lblStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 404);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(857, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(665, 22);
             this.statusStrip1.TabIndex = 16;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -256,35 +279,26 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 17);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(621, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(225, 136);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmStartScreen
             // 
             this.AcceptButton = this.btnShowAll;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(857, 426);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(665, 426);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.chkEnableSearchFilter);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.grpSearchFilter);
             this.Controls.Add(this.btnOfficialLogin);
-            this.Controls.Add(this.dgv);
+            this.Controls.Add(this.dgvPlayers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "frmStartScreen";
             this.Text = "Start Screen";
             this.Load += new System.EventHandler(this.frmStartScreen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).EndInit();
             this.grpSearchFilter.ResumeLayout(false);
             this.grpSearchFilter.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -292,7 +306,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderStart)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,7 +313,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.DataGridView dgvPlayers;
         private System.Windows.Forms.Button btnOfficialLogin;
         private System.Windows.Forms.GroupBox grpSearchFilter;
         private System.Windows.Forms.Button btnSearch;
@@ -321,7 +334,8 @@
         private System.Windows.Forms.RadioButton radSimilarMatch;
         private System.Windows.Forms.RadioButton radExactMatch;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cboStanding;
+        private System.Windows.Forms.Label label1;
     }
 }
 

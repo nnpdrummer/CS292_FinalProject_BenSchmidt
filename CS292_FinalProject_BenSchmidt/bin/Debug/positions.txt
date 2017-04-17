@@ -1,0 +1,13 @@
+QB
+RB
+WR
+TE
+OL
+DT
+DE
+MLB
+OLB
+CB
+S
+K
+P

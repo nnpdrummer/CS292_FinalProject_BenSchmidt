@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.dgv = new System.Windows.Forms.DataGridView();
+            this.dgvPlayers = new System.Windows.Forms.DataGridView();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.cboSchool = new System.Windows.Forms.ComboBox();
             this.errorProviderOfficials = new System.Windows.Forms.ErrorProvider(this.components);
@@ -55,7 +55,7 @@
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTipOfficialsPage = new System.Windows.Forms.ToolTip(this.components);
             this.pic = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderOfficials)).BeginInit();
             this.grpPlayerInformation.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -82,13 +82,13 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // dgv
+            // dgvPlayers
             // 
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(12, 41);
-            this.dgv.Name = "dgv";
-            this.dgv.Size = new System.Drawing.Size(577, 150);
-            this.dgv.TabIndex = 2;
+            this.dgvPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlayers.Location = new System.Drawing.Point(12, 41);
+            this.dgvPlayers.Name = "dgvPlayers";
+            this.dgvPlayers.Size = new System.Drawing.Size(577, 150);
+            this.dgvPlayers.TabIndex = 2;
             // 
             // btnShowAll
             // 
@@ -310,7 +310,7 @@
             this.Controls.Add(this.grpPlayerInformation);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnShowAll);
-            this.Controls.Add(this.dgv);
+            this.Controls.Add(this.dgvPlayers);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -318,7 +318,7 @@
             this.Name = "frmOfficials";
             this.Text = "Officials\' page";
             this.Load += new System.EventHandler(this.frmOfficials_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderOfficials)).EndInit();
             this.grpPlayerInformation.ResumeLayout(false);
             this.grpPlayerInformation.PerformLayout();
@@ -336,7 +336,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.DataGridView dgvPlayers;
         private System.Windows.Forms.Button btnShowAll;
         private System.Windows.Forms.ComboBox cboSchool;
         private System.Windows.Forms.ErrorProvider errorProviderOfficials;
