@@ -37,7 +37,8 @@
             this.errorProviderOfficials = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblUsername = new System.Windows.Forms.Label();
             this.grpPlayerInformation = new System.Windows.Forms.GroupBox();
-            this.btnPlayerInfoCRUD = new System.Windows.Forms.Button();
+            this.cboStanding = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.radRemove = new System.Windows.Forms.RadioButton();
             this.radEdit = new System.Windows.Forms.RadioButton();
             this.radAdd = new System.Windows.Forms.RadioButton();
@@ -45,6 +46,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPlayerID = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPlayerInfoCRUD = new System.Windows.Forms.Button();
             this.chkExactMatch = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearchPlayerName = new System.Windows.Forms.TextBox();
@@ -74,7 +76,7 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(363, 472);
+            this.btnLogout.Location = new System.Drawing.Point(12, 501);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(226, 23);
             this.btnLogout.TabIndex = 1;
@@ -92,7 +94,7 @@
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(363, 443);
+            this.btnShowAll.Location = new System.Drawing.Point(12, 530);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(226, 23);
             this.btnShowAll.TabIndex = 8;
@@ -107,6 +109,7 @@
             this.cboSchool.Name = "cboSchool";
             this.cboSchool.Size = new System.Drawing.Size(121, 21);
             this.cboSchool.TabIndex = 9;
+            this.cboSchool.SelectedIndexChanged += new System.EventHandler(this.cboSchool_SelectedIndexChanged);
             // 
             // errorProviderOfficials
             // 
@@ -124,6 +127,8 @@
             // grpPlayerInformation
             // 
             this.grpPlayerInformation.Controls.Add(this.btnPlayerInfoCRUD);
+            this.grpPlayerInformation.Controls.Add(this.cboStanding);
+            this.grpPlayerInformation.Controls.Add(this.label6);
             this.grpPlayerInformation.Controls.Add(this.radRemove);
             this.grpPlayerInformation.Controls.Add(this.radEdit);
             this.grpPlayerInformation.Controls.Add(this.radAdd);
@@ -137,20 +142,28 @@
             this.grpPlayerInformation.Controls.Add(this.label2);
             this.grpPlayerInformation.Location = new System.Drawing.Point(363, 197);
             this.grpPlayerInformation.Name = "grpPlayerInformation";
-            this.grpPlayerInformation.Size = new System.Drawing.Size(226, 240);
+            this.grpPlayerInformation.Size = new System.Drawing.Size(226, 270);
             this.grpPlayerInformation.TabIndex = 11;
             this.grpPlayerInformation.TabStop = false;
             this.grpPlayerInformation.Text = "Player Information";
             // 
-            // btnPlayerInfoCRUD
+            // cboStanding
             // 
-            this.btnPlayerInfoCRUD.Location = new System.Drawing.Point(48, 210);
-            this.btnPlayerInfoCRUD.Name = "btnPlayerInfoCRUD";
-            this.btnPlayerInfoCRUD.Size = new System.Drawing.Size(135, 23);
-            this.btnPlayerInfoCRUD.TabIndex = 22;
-            this.btnPlayerInfoCRUD.Text = "Search for player(s)";
-            this.btnPlayerInfoCRUD.UseVisualStyleBackColor = true;
-            this.btnPlayerInfoCRUD.Click += new System.EventHandler(this.btnPlayerInfoCRUD_Click);
+            this.cboStanding.FormattingEnabled = true;
+            this.cboStanding.Location = new System.Drawing.Point(74, 122);
+            this.cboStanding.Name = "cboStanding";
+            this.cboStanding.Size = new System.Drawing.Size(121, 21);
+            this.cboStanding.TabIndex = 22;
+            this.cboStanding.SelectedIndexChanged += new System.EventHandler(this.cboStanding_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Standing:";
             // 
             // radRemove
             // 
@@ -201,7 +214,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 125);
+            this.label5.Location = new System.Drawing.Point(6, 152);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 17;
@@ -209,10 +222,11 @@
             // 
             // txtPlayerID
             // 
-            this.txtPlayerID.Location = new System.Drawing.Point(74, 122);
+            this.txtPlayerID.Location = new System.Drawing.Point(74, 149);
             this.txtPlayerID.Name = "txtPlayerID";
             this.txtPlayerID.Size = new System.Drawing.Size(121, 20);
             this.txtPlayerID.TabIndex = 16;
+            this.txtPlayerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlayerID_KeyPress);
             // 
             // panel1
             // 
@@ -220,10 +234,20 @@
             this.panel1.Controls.Add(this.chkExactMatch);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtSearchPlayerName);
-            this.panel1.Location = new System.Drawing.Point(9, 148);
+            this.panel1.Location = new System.Drawing.Point(9, 175);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(210, 56);
+            this.panel1.Size = new System.Drawing.Size(210, 58);
             this.panel1.TabIndex = 15;
+            // 
+            // btnPlayerInfoCRUD
+            // 
+            this.btnPlayerInfoCRUD.Location = new System.Drawing.Point(41, 239);
+            this.btnPlayerInfoCRUD.Name = "btnPlayerInfoCRUD";
+            this.btnPlayerInfoCRUD.Size = new System.Drawing.Size(135, 23);
+            this.btnPlayerInfoCRUD.TabIndex = 22;
+            this.btnPlayerInfoCRUD.Text = "Search for player(s)";
+            this.btnPlayerInfoCRUD.UseVisualStyleBackColor = true;
+            this.btnPlayerInfoCRUD.Click += new System.EventHandler(this.btnPlayerInfoCRUD_Click);
             // 
             // chkExactMatch
             // 
@@ -258,6 +282,7 @@
             this.cboPosition.Name = "cboPosition";
             this.cboPosition.Size = new System.Drawing.Size(121, 21);
             this.cboPosition.TabIndex = 12;
+            this.cboPosition.SelectedIndexChanged += new System.EventHandler(this.cboPosition_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -281,7 +306,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 502);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 578);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(598, 22);
             this.statusStrip1.TabIndex = 13;
@@ -304,7 +329,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 524);
+            this.ClientSize = new System.Drawing.Size(598, 600);
             this.Controls.Add(this.pic);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grpPlayerInformation);
@@ -360,5 +385,7 @@
         private System.Windows.Forms.RadioButton radEdit;
         private System.Windows.Forms.RadioButton radAdd;
         private System.Windows.Forms.RadioButton radSearch;
+        private System.Windows.Forms.ComboBox cboStanding;
+        private System.Windows.Forms.Label label6;
     }
 }

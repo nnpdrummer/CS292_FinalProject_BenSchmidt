@@ -28,7 +28,7 @@ namespace CS292_FinalProject_BenSchmidt
 
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
         private SQLiteDataAdapter dataAdapter;
-        private SQLiteCommand command;
+        //private SQLiteCommand command;
         private DataSet dataSet;
         private String sql;
 
@@ -49,6 +49,10 @@ namespace CS292_FinalProject_BenSchmidt
             lblStatus.Text = "Welcome to the High School Football Stats Tracker!";
         }
 
+        /// <summary>
+        /// Initializes all of the items contained in the position, school, and
+        /// standing combo boxes.
+        /// </summary>
         private void populateComboBoxes()
         {
             try
@@ -90,7 +94,8 @@ namespace CS292_FinalProject_BenSchmidt
         }
 
         /// <summary>
-        /// 
+        /// Searches for either an exact or similar matching name to the
+        /// name entered in the name text box.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -176,8 +181,15 @@ namespace CS292_FinalProject_BenSchmidt
             dgvPlayers.ClearSelection();
         }
 
+        /// <summary>
+        /// Queries all players and their associated stats depending 
+        /// on the position selected in the position combo box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboPosition.SelectedIndex == -1) return;
             string position = cboPosition.SelectedItem.ToString();
             connection.Open();
             sql = "Select Name, Position, School, Standing";
@@ -213,8 +225,15 @@ namespace CS292_FinalProject_BenSchmidt
             dgvPlayers.ClearSelection();
         }
 
+        /// <summary>
+        /// Queries all players that go to a certain school provided by the
+        /// school combo box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboSchool.SelectedIndex == -1) return;
             string school = cboSchool.SelectedItem.ToString();
             connection.Open();
             sql = "Select Name, Position, School, Standing" + 
@@ -228,8 +247,15 @@ namespace CS292_FinalProject_BenSchmidt
             dgvPlayers.ClearSelection();
         }
 
+        /// <summary>
+        /// Queries all players that belong to a certain class standing
+        /// provided by the standing combo box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboStanding_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cboStanding.SelectedIndex == -1) return;
             string standing = cboStanding.SelectedItem.ToString();
             connection.Open();
             sql = "Select Name, Position, School, Standing" +
