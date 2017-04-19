@@ -15,11 +15,12 @@ namespace CS292_FinalProject_BenSchmidt
     {
         private const string DB_FOOTBALL = "Data Source = ../../highSchoolFootball.db; Version = 3";
         private bool isEdit;
-        private string id;
+        private int id;
         private string name;
         private string school;
         private string standing;
         private string position;
+        private bool inputIsNotValid;
 
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
         private SQLiteDataAdapter dataAdapter;
@@ -31,12 +32,13 @@ namespace CS292_FinalProject_BenSchmidt
 
         private void frmAdditionalPlayerInfo_Load(object sender, EventArgs e)
         {
+            inputIsNotValid = false;
             btnClear_Click(null, null);
         }
 
         public void setEdit(bool choice) { isEdit = choice; }
 
-        public void setID(string newID) { id = newID; }
+        public void setID(int newID) { id = newID; }
         public void setName(string newName) { name = newName; }
         public void setSchool(string newSchool) { school = newSchool; }
         public void setStanding(string newStanding) { standing = newStanding; }
@@ -44,39 +46,64 @@ namespace CS292_FinalProject_BenSchmidt
 
         private void btnClear_Click(object sender, EventArgs e)// TODO: fix this
         {
-            foreach (Control c in Controls)
+            errorProviderAPI.Clear();
+            clearTextboxes(this);
+        }
+
+        private void clearTextboxes(Control control)
+        {
+            foreach (Control c in control.Controls)
             {
-                if (c is TextBox) c.Text = "";
+                if (c is TextBox) c.Text = string.Empty;
+                if (c is GroupBox) clearTextboxes(c);
             }
-            MessageBox.Show("Did it go through?");
         }
 
         private void btnAddEditPlayer_Click(object sender, EventArgs e)
         {
-            if (isEdit)
+            errorProviderAPI.Clear();
+            checkUserInput(this);
+            if (inputIsNotValid)
             {
-                updateDatabase();
+                inputIsNotValid = false;
+                return;
             }
-            else
-            {
-                addToDatabase();
-            }
-
+            if (isEdit) updateDatabase();
+            else addToDatabase();
             Close();
+        }
+
+        private void checkUserInput(Control control)
+        {
+            foreach (Control c in control.Controls)
+            {
+                if (c is GroupBox) checkUserInput(c);
+                if (c is TextBox)
+                {
+                    int parsedValue;
+                    if (c.Text.Equals("")) continue;
+                    if(!int.TryParse(c.Text, out parsedValue))
+                    {
+                        errorProviderAPI.SetError(c, "All entered values must be in the form of an integer!");
+                        inputIsNotValid = true;
+                        return;
+                    }
+                }
+            }
         }
 
         private void updateDatabase()
         {
-            sql = "UPDATE StudentFootballPlayer SET Name = @name AND School = @school AND Standing = @standing " +
-                "AND Position = @position AND \"Passing Yards\" = @passingYards AND \"Pass Attempts\" = @passAttempts " + 
-                "AND \"Pass Completions\" = @passCompletions AND \"Passing TDs\" = @passingTDs AND \"Passing Interceptions\" "+ 
-                "= @passingInterceptions AND \"Receiving Yards\" = @receivingYards AND Receptions = @receptions AND " + 
-                "\"Receiving TDs\" = @receivingTDs AND \"Rushing Yards\" = @rushingYards AND \"Rushing Attempts\" = "+ 
-                "@rushingAttempts AND \"Rushing TDs\" = @rushingTDs AND Fumbles = @fumbles AND Tackles = @tackles AND " + 
-                "\"Assisted Tackles\" = @assistedTackles AND Sacks = @sacks AND Interceptions = @interceptions AND " + 
-                "Safeties = @safeties AND \"Forced Fumbles\" = @forcedFumbles AND \"Field Goals Attempted\" = " + 
-                "@fieldGoalsAttempted AND \"Field Goals Made\" = @fieldGoalsMade AND \"Punt Yards\" = @puntYards " + 
-                "AND \"Kick Yards\" = @kickYards AND Touchbacks = @touchbacks WHERE Id = @id";
+            sql = "UPDATE StudentFootballPlayer SET Name = @name, School = @school, Standing = @standing, " +
+                "Position = @position, \"Passing Yards\" = @passingYards, \"Pass Attempts\" = @passAttempts, " + 
+                "\"Pass Completions\" = @passCompletions, \"Passing TDs\" = @passingTDs, \"Passing Interceptions\" "+ 
+                "= @passingInterceptions, \"Receiving Yards\" = @receivingYards, Receptions = @receptions, " + 
+                "\"Receiving TDs\" = @receivingTDs, \"Rushing Yards\" = @rushingYards, \"Rushing Attempts\" = "+ 
+                "@rushingAttempts, \"Rushing TDs\" = @rushingTDs, Fumbles = @fumbles, Tackles = @tackles, " + 
+                "\"Assisted Tackles\" = @assistedTackles, Sacks = @sacks, Interceptions = @interceptions, " + 
+                "Safeties = @safeties, \"Forced Fumbles\" = @forcedFumbles, \"Field Goals Attempted\" = " + 
+                "@fieldGoalsAttempted, \"Field Goals Made\" = @fieldGoalsMade, \"Punt Yards\" = @puntYards, " + 
+                "\"Kick Yards\" = @kickYards, Touchbacks = @touchbacks WHERE Id = @id";
             connection.Open();
             command = new SQLiteCommand(sql, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -136,6 +163,5 @@ namespace CS292_FinalProject_BenSchmidt
             command.Parameters.AddWithValue("@kickYards", txtKickYards.Text);
             command.Parameters.AddWithValue("@touchbacks", txtTouchbacks.Text);
         }
-
     }
 }

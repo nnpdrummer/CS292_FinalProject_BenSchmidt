@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpAdditionalPlayerInfo = new System.Windows.Forms.GroupBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAddEditPlayer = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtTackles = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.errorProviderAPI = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpAdditionalPlayerInfo.SuspendLayout();
             this.grpOffense.SuspendLayout();
             this.grpReceivingInfo.SuspendLayout();
@@ -92,6 +94,7 @@
             this.grpPassingInfo.SuspendLayout();
             this.grpSpecialTeamsInfo.SuspendLayout();
             this.grpDefenseInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderAPI)).BeginInit();
             this.SuspendLayout();
             // 
             // grpAdditionalPlayerInfo
@@ -617,6 +620,10 @@
             this.label20.TabIndex = 7;
             this.label20.Text = "Tackles:";
             // 
+            // errorProviderAPI
+            // 
+            this.errorProviderAPI.ContainerControl = this;
+            // 
             // frmAdditionalPlayerInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,6 +646,7 @@
             this.grpSpecialTeamsInfo.PerformLayout();
             this.grpDefenseInfo.ResumeLayout(false);
             this.grpDefenseInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderAPI)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -702,5 +710,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtTackles;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ErrorProvider errorProviderAPI;
     }
 }

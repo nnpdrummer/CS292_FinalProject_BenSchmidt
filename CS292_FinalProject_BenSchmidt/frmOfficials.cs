@@ -146,6 +146,8 @@ namespace CS292_FinalProject_BenSchmidt
         {
             frmAdditionalPlayerInfo aPI = new frmAdditionalPlayerInfo();
             aPI.setEdit(false);
+            //TODO: vvvvvvv add a check for these!
+            if (checkPlayerInfo()) return;
             aPI.setName(txtSearchPlayerName.Text);
             aPI.setPosition(cboPosition.SelectedItem.ToString());
             aPI.setSchool(cboSchool.SelectedItem.ToString());
@@ -158,19 +160,47 @@ namespace CS292_FinalProject_BenSchmidt
         {
             if (!ensurePlayerID())
             {
-                errorProviderOfficials.SetError(txtPlayerID, "Invalid PlayerID");
+                errorProviderOfficials.SetError(txtPlayerID, "Invalid Player ID");
                 lblStatus.Text = "Entered player ID does not belong to an existing player!";
                 return;
             }
             frmAdditionalPlayerInfo aPI = new frmAdditionalPlayerInfo();
             aPI.setEdit(true);
-            aPI.setID(txtPlayerID.Text);
+            aPI.setID(int.Parse(txtPlayerID.Text));
+            //TODO: vvvvvvv add a check for these!
+            if (checkPlayerInfo()) return;
             aPI.setName(txtSearchPlayerName.Text);
             aPI.setPosition(cboPosition.SelectedItem.ToString());
             aPI.setSchool(cboSchool.SelectedItem.ToString());
             aPI.setStanding(cboStanding.SelectedItem.ToString());
             aPI.ShowDialog();
+
             lblStatus.Text = "You have successfully edited a player from the database!";
+        }
+
+        private bool checkPlayerInfo()
+        {
+            if(txtSearchPlayerName.Equals(""))
+            {
+                errorProviderOfficials.SetError(txtSearchPlayerName, "Please enter the player's name!");
+                return true;
+            }
+            if (cboPosition.SelectedIndex == 0)
+            {
+                errorProviderOfficials.SetError(cboPosition, "Please enter the player's position!");
+                return true;
+            }
+            if (cboSchool.SelectedIndex == 0)
+            {
+                errorProviderOfficials.SetError(cboSchool, "Please enter the player's school!");
+                return true;
+            }
+            if (cboStanding.SelectedIndex == 0)
+            {
+                errorProviderOfficials.SetError(cboStanding, "Please enter the player's class standing!");
+                return true;
+            }
+            return false;
         }
 
         private void removeFromDatabase()
@@ -188,7 +218,6 @@ namespace CS292_FinalProject_BenSchmidt
                 lblStatus.Text = "Please enter an ID that belongs to the player you want to remove!";
                 return;
             }
-
             sql = "DELETE FROM StudentFootballPlayer WHERE Id = @id";
 
             connection.Open();

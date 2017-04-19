@@ -37,6 +37,7 @@
             this.errorProviderOfficials = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblUsername = new System.Windows.Forms.Label();
             this.grpPlayerInformation = new System.Windows.Forms.GroupBox();
+            this.btnPlayerInfoCRUD = new System.Windows.Forms.Button();
             this.cboStanding = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.radRemove = new System.Windows.Forms.RadioButton();
@@ -46,7 +47,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPlayerID = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnPlayerInfoCRUD = new System.Windows.Forms.Button();
             this.chkExactMatch = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearchPlayerName = new System.Windows.Forms.TextBox();
@@ -56,19 +56,17 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTipOfficialsPage = new System.Windows.Forms.ToolTip(this.components);
-            this.pic = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderOfficials)).BeginInit();
             this.grpPlayerInformation.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(234, 9);
+            this.label1.Location = new System.Drawing.Point(523, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
@@ -76,7 +74,7 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(12, 501);
+            this.btnLogout.Location = new System.Drawing.Point(12, 343);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(226, 23);
             this.btnLogout.TabIndex = 1;
@@ -87,14 +85,14 @@
             // dgvPlayers
             // 
             this.dgvPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlayers.Location = new System.Drawing.Point(12, 41);
+            this.dgvPlayers.Location = new System.Drawing.Point(253, 38);
             this.dgvPlayers.Name = "dgvPlayers";
-            this.dgvPlayers.Size = new System.Drawing.Size(577, 150);
+            this.dgvPlayers.Size = new System.Drawing.Size(953, 328);
             this.dgvPlayers.TabIndex = 2;
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(12, 530);
+            this.btnShowAll.Location = new System.Drawing.Point(12, 314);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(226, 23);
             this.btnShowAll.TabIndex = 8;
@@ -104,6 +102,7 @@
             // 
             // cboSchool
             // 
+            this.cboSchool.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSchool.FormattingEnabled = true;
             this.cboSchool.Location = new System.Drawing.Point(74, 95);
             this.cboSchool.Name = "cboSchool";
@@ -118,7 +117,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(301, 9);
+            this.lblUsername.Location = new System.Drawing.Point(590, 9);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(35, 13);
             this.lblUsername.TabIndex = 10;
@@ -140,15 +139,26 @@
             this.grpPlayerInformation.Controls.Add(this.cboSchool);
             this.grpPlayerInformation.Controls.Add(this.label3);
             this.grpPlayerInformation.Controls.Add(this.label2);
-            this.grpPlayerInformation.Location = new System.Drawing.Point(363, 197);
+            this.grpPlayerInformation.Location = new System.Drawing.Point(12, 38);
             this.grpPlayerInformation.Name = "grpPlayerInformation";
             this.grpPlayerInformation.Size = new System.Drawing.Size(226, 270);
             this.grpPlayerInformation.TabIndex = 11;
             this.grpPlayerInformation.TabStop = false;
             this.grpPlayerInformation.Text = "Player Information";
             // 
+            // btnPlayerInfoCRUD
+            // 
+            this.btnPlayerInfoCRUD.Location = new System.Drawing.Point(41, 239);
+            this.btnPlayerInfoCRUD.Name = "btnPlayerInfoCRUD";
+            this.btnPlayerInfoCRUD.Size = new System.Drawing.Size(135, 23);
+            this.btnPlayerInfoCRUD.TabIndex = 22;
+            this.btnPlayerInfoCRUD.Text = "Search for player(s)";
+            this.btnPlayerInfoCRUD.UseVisualStyleBackColor = true;
+            this.btnPlayerInfoCRUD.Click += new System.EventHandler(this.btnPlayerInfoCRUD_Click);
+            // 
             // cboStanding
             // 
+            this.cboStanding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStanding.FormattingEnabled = true;
             this.cboStanding.Location = new System.Drawing.Point(74, 122);
             this.cboStanding.Name = "cboStanding";
@@ -239,16 +249,6 @@
             this.panel1.Size = new System.Drawing.Size(210, 58);
             this.panel1.TabIndex = 15;
             // 
-            // btnPlayerInfoCRUD
-            // 
-            this.btnPlayerInfoCRUD.Location = new System.Drawing.Point(41, 239);
-            this.btnPlayerInfoCRUD.Name = "btnPlayerInfoCRUD";
-            this.btnPlayerInfoCRUD.Size = new System.Drawing.Size(135, 23);
-            this.btnPlayerInfoCRUD.TabIndex = 22;
-            this.btnPlayerInfoCRUD.Text = "Search for player(s)";
-            this.btnPlayerInfoCRUD.UseVisualStyleBackColor = true;
-            this.btnPlayerInfoCRUD.Click += new System.EventHandler(this.btnPlayerInfoCRUD_Click);
-            // 
             // chkExactMatch
             // 
             this.chkExactMatch.AutoSize = true;
@@ -277,6 +277,7 @@
             // 
             // cboPosition
             // 
+            this.cboPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPosition.FormattingEnabled = true;
             this.cboPosition.Location = new System.Drawing.Point(74, 68);
             this.cboPosition.Name = "cboPosition";
@@ -306,9 +307,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 578);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 369);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(598, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1218, 22);
             this.statusStrip1.TabIndex = 13;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -317,20 +318,11 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 17);
             // 
-            // pic
-            // 
-            this.pic.Location = new System.Drawing.Point(12, 200);
-            this.pic.Name = "pic";
-            this.pic.Size = new System.Drawing.Size(345, 295);
-            this.pic.TabIndex = 15;
-            this.pic.TabStop = false;
-            // 
             // frmOfficials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 600);
-            this.Controls.Add(this.pic);
+            this.ClientSize = new System.Drawing.Size(1218, 391);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grpPlayerInformation);
             this.Controls.Add(this.lblUsername);
@@ -341,7 +333,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "frmOfficials";
-            this.Text = "Officials\' page";
+            this.Text = "Official\'s Workshop";
             this.Load += new System.EventHandler(this.frmOfficials_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderOfficials)).EndInit();
@@ -351,7 +343,6 @@
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,7 +370,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.CheckBox chkExactMatch;
         private System.Windows.Forms.ToolTip toolTipOfficialsPage;
-        private System.Windows.Forms.PictureBox pic;
         private System.Windows.Forms.Button btnPlayerInfoCRUD;
         private System.Windows.Forms.RadioButton radRemove;
         private System.Windows.Forms.RadioButton radEdit;
