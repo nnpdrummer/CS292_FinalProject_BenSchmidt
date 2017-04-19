@@ -6,13 +6,7 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.IO;
@@ -28,7 +22,6 @@ namespace CS292_FinalProject_BenSchmidt
 
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
         private SQLiteDataAdapter dataAdapter;
-        //private SQLiteCommand command;
         private DataSet dataSet;
         private String sql;
 
@@ -45,7 +38,6 @@ namespace CS292_FinalProject_BenSchmidt
             btnShowAll_Click(null, null);
             resetControls();
             populateComboBoxes();
-            chkEnableSearchFilter.Checked = false;
             lblStatus.Text = "Welcome to the High School Football Stats Tracker!";
         }
 
@@ -76,23 +68,6 @@ namespace CS292_FinalProject_BenSchmidt
             }
         }
 
-
-        /// <summary>
-        /// Makes the search filter group box either visible or invisible depending 
-        /// on the status of the enable search filter check box.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void chkEnableSearchFilter_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkEnableSearchFilter.Checked)
-            {
-                grpSearchFilter.Visible = true;
-                return;
-            }
-            grpSearchFilter.Visible = false;
-        }
-
         /// <summary>
         /// Searches for either an exact or similar matching name to the
         /// name entered in the name text box.
@@ -103,22 +78,12 @@ namespace CS292_FinalProject_BenSchmidt
         {
             string name = txtSearchPlayerName.Text;
             connection.Open();
-            if(radExactMatch.Checked)
-            {
-                sql = "Select Name, Position, School, Standing" +
-                " FROM StudentFootballPlayer WHERE Name = \'" + name + "\'";
-            }
-            else if(radSimilarMatch.Checked)
-            {
-                sql = "Select Name, Position, School, Standing" +
-                " FROM StudentFootballPlayer WHERE Name LIKE '%" + name + "%'";
-            }
-            dataSet = new DataSet();
-            dataAdapter = new SQLiteDataAdapter(sql, connection);
-            dataAdapter.Fill(dataSet);
-            connection.Close();
-            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
-            dgvPlayers.ClearSelection();
+            sql = "Select Name, Position, School, Standing FROM StudentFootballPlayer WHERE Name ";
+
+            if (radExactMatch.Checked) sql +=  "= \'" + name + "\'";
+            else if(radSimilarMatch.Checked) sql += "LIKE '%" + name + "%'";
+
+            fillDataGridView();
         }
 
         /// <summary>
@@ -134,21 +99,6 @@ namespace CS292_FinalProject_BenSchmidt
         }
 
         /// <summary>
-        /// Displays the login form. Once the login form is closed,
-        /// redisplays the start screen.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOfficialLogin_Click(object sender, EventArgs e)
-        {
-            frmLogin login = new frmLogin();
-            this.Hide();
-            login.ShowDialog();
-            resetControls();
-            this.Show();
-        }
-
-        /// <summary>
         /// Re-initializes all controls on the start screen form.
         /// </summary>
         private void resetControls()
@@ -161,24 +111,17 @@ namespace CS292_FinalProject_BenSchmidt
         }
 
         /// <summary>
-        /// Exits the program.
+        /// Displays all of the players in the StudentFootballPlayer table
+        /// to the appropriate dgv.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnExit_Click(object sender, EventArgs e) { Close(); }
-
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             connection.Open();
             sql = "SELECT Name, School, Standing, Position FROM StudentFootballPlayer";
-            dataSet = new DataSet();
 
-            dataAdapter = new SQLiteDataAdapter(sql, connection);
-            dataAdapter.Fill(dataSet);
-            connection.Close();
-
-            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
-            dgvPlayers.ClearSelection();
+            fillDataGridView();
         }
 
         /// <summary>
@@ -212,17 +155,10 @@ namespace CS292_FinalProject_BenSchmidt
                 case "K": case "P":
                     sql += ", \"Field Goals Attempted\", \"Field Goals Made\", \"Punt Yards\", \"Kick Yards\", \"Touchbacks\" ";
                     break;
-                default:
-                    break;
             }
             sql += " FROM StudentFootballPlayer WHERE Position = \'" + position + "\'";
 
-            dataSet = new DataSet();
-            dataAdapter = new SQLiteDataAdapter(sql, connection);
-            dataAdapter.Fill(dataSet);
-            connection.Close();
-            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
-            dgvPlayers.ClearSelection();
+            fillDataGridView();
         }
 
         /// <summary>
@@ -239,12 +175,7 @@ namespace CS292_FinalProject_BenSchmidt
             sql = "Select Name, Position, School, Standing" + 
                 " FROM StudentFootballPlayer WHERE School = \'" + school + "\'";
 
-            dataSet = new DataSet();
-            dataAdapter = new SQLiteDataAdapter(sql, connection);
-            dataAdapter.Fill(dataSet);
-            connection.Close();
-            dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
-            dgvPlayers.ClearSelection();
+            fillDataGridView();
         }
 
         /// <summary>
@@ -261,6 +192,15 @@ namespace CS292_FinalProject_BenSchmidt
             sql = "Select Name, Position, School, Standing" +
                 " FROM StudentFootballPlayer WHERE Standing = \'" + standing + "\'";
 
+            fillDataGridView();
+        }
+
+        /// <summary>
+        /// Fills the player data grid view with the query results obtained
+        /// in various functions.
+        /// </summary>
+        private void fillDataGridView()
+        {
             dataSet = new DataSet();
             dataAdapter = new SQLiteDataAdapter(sql, connection);
             dataAdapter.Fill(dataSet);
@@ -268,5 +208,35 @@ namespace CS292_FinalProject_BenSchmidt
             dgvPlayers.DataSource = dataSet.Tables[0].DefaultView;
             dgvPlayers.ClearSelection();
         }
+
+        /// <summary>
+        /// Displays the login form. Once the login form is closed,
+        /// redisplays the start screen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuItemLogin_Click(object sender, EventArgs e)
+        {
+            frmLogin login = new frmLogin();
+            this.Hide();
+            login.ShowDialog();
+            resetControls();
+            this.Show();
+        }
+
+        /// <summary>
+        /// Displays all of the players in the StudentFootballPlayer table
+        /// to the appropriate dgv.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuItemShowAll_Click(object sender, EventArgs e) { btnShowAll_Click(null, null); }
+
+        /// <summary>
+        /// Exits the application.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuItemExit_Click(object sender, EventArgs e) { Close(); }
     }
 }

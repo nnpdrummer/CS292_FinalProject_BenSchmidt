@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.IO;
@@ -27,14 +21,29 @@ namespace CS292_FinalProject_BenSchmidt
 
         public frmOfficials() { InitializeComponent(); }
 
+        /// <summary>
+        /// Sets the logged-in official's username in the label
+        /// at the top of the form
+        /// </summary>
+        /// <param name="username"></param>
         public void setUsername(string username) { lblUsername.Text = username; }
 
+        /// <summary>
+        /// Adds values to the combo boxes on the form and
+        /// displays all players to the player data grivd view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmOfficials_Load(object sender, EventArgs e)
         {
             populateComboBoxes();
             btnShowAll_Click(null, null);
         }
 
+        /// <summary>
+        /// Adds items to each combo box on the form by
+        /// reading their corresponding files.
+        /// </summary>
         private void populateComboBoxes()
         {
             try
@@ -58,6 +67,12 @@ namespace CS292_FinalProject_BenSchmidt
             }
         }
 
+        /// <summary>
+        /// Enables and disables various controls if the search
+        /// radio button is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radSearch_CheckedChanged(object sender, EventArgs e)
         {
             cboPosition.Enabled = true;
@@ -69,6 +84,12 @@ namespace CS292_FinalProject_BenSchmidt
             btnPlayerInfoCRUD.Text = "Search for player(s)";
         }
 
+        /// <summary>
+        /// Enables and disables various controls if the add
+        /// radio button is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radAdd_CheckedChanged(object sender, EventArgs e)
         {
             cboPosition.Enabled = true;
@@ -80,6 +101,12 @@ namespace CS292_FinalProject_BenSchmidt
             btnPlayerInfoCRUD.Text = "Add new player";
         }
 
+        /// <summary>
+        /// Enables and disables various controls if the edit
+        /// radio button is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radEdit_CheckedChanged(object sender, EventArgs e)
         {
             cboPosition.Enabled = true;
@@ -91,6 +118,12 @@ namespace CS292_FinalProject_BenSchmidt
             btnPlayerInfoCRUD.Text = "Edit existing player";
         }
 
+        /// <summary>
+        /// Enables and disables various controls if the remove
+        /// radio button is selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radRemove_CheckedChanged(object sender, EventArgs e)
         {
             cboPosition.Enabled = false;
@@ -101,6 +134,13 @@ namespace CS292_FinalProject_BenSchmidt
             btnPlayerInfoCRUD.Text = "Remove existing player";
         }
 
+        /// <summary>
+        /// Depending on what radio button is selected on the form,
+        /// either adds a player to the database, edits a player in the database,
+        /// removes a player from the database, or queries player(s) from the database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPlayerInfoCRUD_Click(object sender, EventArgs e)
         {
             errorProviderOfficials.Clear();
@@ -110,6 +150,10 @@ namespace CS292_FinalProject_BenSchmidt
             else removeFromDatabase();
         }
 
+        /// <summary>
+        /// Searches the database for players whose names and/or
+        /// Id's are equal to those that the user entered.
+        /// </summary>
         private void searchDatabase()
         {
             string playerID = txtPlayerID.Text;
@@ -142,11 +186,15 @@ namespace CS292_FinalProject_BenSchmidt
             fillDataGridTable();
         }
         
+        /// <summary>
+        /// Displays the additional player info form.
+        /// And notifies the user when the player has
+        /// successfully been added to the database.
+        /// </summary>
         private void addToDatabase()
         {
             frmAdditionalPlayerInfo aPI = new frmAdditionalPlayerInfo();
             aPI.setEdit(false);
-            //TODO: vvvvvvv add a check for these!
             if (checkPlayerInfo()) return;
             aPI.setName(txtSearchPlayerName.Text);
             aPI.setPosition(cboPosition.SelectedItem.ToString());
@@ -156,6 +204,11 @@ namespace CS292_FinalProject_BenSchmidt
             lblStatus.Text = "You have successfully added a player from the database!";
         }
 
+        /// <summary>
+        /// Ensures that the user's entered id matches that of an existing player,
+        /// displays the additional player info form, and notifies the user of a successful
+        /// edit.
+        /// </summary>
         private void editDatabase()
         {
             if (!ensurePlayerID())
@@ -167,7 +220,6 @@ namespace CS292_FinalProject_BenSchmidt
             frmAdditionalPlayerInfo aPI = new frmAdditionalPlayerInfo();
             aPI.setEdit(true);
             aPI.setID(int.Parse(txtPlayerID.Text));
-            //TODO: vvvvvvv add a check for these!
             if (checkPlayerInfo()) return;
             aPI.setName(txtSearchPlayerName.Text);
             aPI.setPosition(cboPosition.SelectedItem.ToString());
@@ -178,6 +230,11 @@ namespace CS292_FinalProject_BenSchmidt
             lblStatus.Text = "You have successfully edited a player from the database!";
         }
 
+        /// <summary>
+        /// Checks to see if the name textbox and all of the combo boxes
+        /// have values in them.
+        /// </summary>
+        /// <returns>True if there is input in all of the controls, False if not.</returns>
         private bool checkPlayerInfo()
         {
             if(txtSearchPlayerName.Equals(""))
@@ -203,6 +260,10 @@ namespace CS292_FinalProject_BenSchmidt
             return false;
         }
 
+        /// <summary>
+        /// Removes a player, specified by the user's entered id, from
+        /// the database.
+        /// </summary>
         private void removeFromDatabase()
         {
             string id = txtPlayerID.Text;
@@ -229,6 +290,11 @@ namespace CS292_FinalProject_BenSchmidt
             lblStatus.Text = "Player: " + id + " was removed from database!";
         }
 
+        /// <summary>
+        /// Displays all of the players to the player data grid view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             connection.Open();
@@ -236,8 +302,12 @@ namespace CS292_FinalProject_BenSchmidt
             fillDataGridTable();
         }
 
-        private void btnLogout_Click(object sender, EventArgs e) { Close(); }
-
+        /// <summary>
+        /// Queries all players and their associated stats depending 
+        /// on the position selected in the position combo box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!radSearch.Checked || cboPosition.SelectedIndex == -1) return;
@@ -271,6 +341,12 @@ namespace CS292_FinalProject_BenSchmidt
             fillDataGridTable();
         }
 
+        /// <summary>
+        /// Queries all players that go to a certain school provided by the
+        /// school combo box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboSchool_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!radSearch.Checked || cboSchool.SelectedIndex == -1) return;
@@ -282,6 +358,12 @@ namespace CS292_FinalProject_BenSchmidt
             fillDataGridTable();
         }
 
+        /// <summary>
+        /// Queries all players that belong to a certain class standing
+        /// provided by the standing combo box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboStanding_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!radSearch.Checked || cboStanding.SelectedIndex == -1) return;
@@ -293,6 +375,10 @@ namespace CS292_FinalProject_BenSchmidt
             fillDataGridTable();
         }
 
+        /// <summary>
+        /// Fills the player data grid view with the query results
+        /// of any of the above, or below, functions.
+        /// </summary>
         private void fillDataGridTable()
         {
             dataSet = new DataSet();
@@ -303,6 +389,11 @@ namespace CS292_FinalProject_BenSchmidt
             dgvPlayers.ClearSelection();
         }
 
+        /// <summary>
+        /// Ensures that the user's entered ID matches that of
+        /// an existing player.
+        /// </summary>
+        /// <returns>True if the IDs match, False if not.</returns>
         private bool ensurePlayerID()
         {
             sql = "SELECT COUNT(*) FROM StudentFootballPlayer WHERE Id = @id";
@@ -322,10 +413,46 @@ namespace CS292_FinalProject_BenSchmidt
             return false;
         }
 
+        /// <summary>
+        /// Ensures that only digits may be entered in the
+        /// player ID text box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPlayerID_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsControl(e.KeyChar) || char.IsDigit(e.KeyChar)) return;
             else e.Handled = true;
+        }
+
+        /// <summary>
+        /// Displays all of the players to the player data grid view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnShowAll_Click(null, null);
+        }
+
+        /// <summary>
+        /// TODO: Create implementation later.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addOfficialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Logs the official out of the system.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

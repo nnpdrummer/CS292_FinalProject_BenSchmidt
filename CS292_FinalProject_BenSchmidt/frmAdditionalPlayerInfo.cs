@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
@@ -23,33 +16,52 @@ namespace CS292_FinalProject_BenSchmidt
         private bool inputIsNotValid;
 
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
-        private SQLiteDataAdapter dataAdapter;
         private SQLiteCommand command;
-        private DataSet dataSet;
         private string sql;
 
         public frmAdditionalPlayerInfo() { InitializeComponent(); }
 
+        /// <summary>
+        /// Clears all of the textboxes on the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmAdditionalPlayerInfo_Load(object sender, EventArgs e)
         {
             inputIsNotValid = false;
             btnClear_Click(null, null);
         }
 
+        /// <summary>
+        /// Sets the form to edit mode, 'true', or
+        /// add mode, 'false'.
+        /// </summary>
+        /// <param name="choice"></param>
         public void setEdit(bool choice) { isEdit = choice; }
-
+        
+        // Setters for id, name, school, standing, and position.
         public void setID(int newID) { id = newID; }
         public void setName(string newName) { name = newName; }
         public void setSchool(string newSchool) { school = newSchool; }
         public void setStanding(string newStanding) { standing = newStanding; }
         public void setPosition(string newPosition) { position = newPosition; }
 
-        private void btnClear_Click(object sender, EventArgs e)// TODO: fix this
+        /// <summary>
+        /// Clears all of the textboxes on the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClear_Click(object sender, EventArgs e)
         {
             errorProviderAPI.Clear();
             clearTextboxes(this);
         }
 
+        /// <summary>
+        /// Clears all of the textboxes on the form through
+        /// recursion.
+        /// </summary>
+        /// <param name="control"></param>
         private void clearTextboxes(Control control)
         {
             foreach (Control c in control.Controls)
@@ -59,6 +71,13 @@ namespace CS292_FinalProject_BenSchmidt
             }
         }
 
+        /// <summary>
+        /// Checks all of the textboxes for valid input and either adds
+        /// a player to the database or edits a player in the database.
+        /// Also, closes the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddEditPlayer_Click(object sender, EventArgs e)
         {
             errorProviderAPI.Clear();
@@ -73,6 +92,11 @@ namespace CS292_FinalProject_BenSchmidt
             Close();
         }
 
+        /// <summary>
+        /// Ensures that only digits are typed by the user
+        /// through use of recursion.
+        /// </summary>
+        /// <param name="control"></param>
         private void checkUserInput(Control control)
         {
             foreach (Control c in control.Controls)
@@ -92,6 +116,10 @@ namespace CS292_FinalProject_BenSchmidt
             }
         }
 
+        /// <summary>
+        /// Edits an existing player in the database with any information
+        /// provided by the user.
+        /// </summary>
         private void updateDatabase()
         {
             sql = "UPDATE StudentFootballPlayer SET Name = @name, School = @school, Standing = @standing, " +
@@ -113,6 +141,10 @@ namespace CS292_FinalProject_BenSchmidt
             connection.Close();
         }
         
+        /// <summary>
+        /// Adds a player to the database with all of the information
+        /// provided by the user.
+        /// </summary>
         private void addToDatabase()
         {
             sql = "INSERT INTO StudentFootballPlayer(Name, School, Standing, Position, \"Passing Yards\", \"Pass Attempts\", "+
@@ -133,6 +165,10 @@ namespace CS292_FinalProject_BenSchmidt
             connection.Close();
         }
 
+        /// <summary>
+        /// An ugly function that only serves to add values to various
+        /// parameters for the add and edit functions.
+        /// </summary>
         private void setParameters()
         {
             command.Parameters.AddWithValue("@name", name);
