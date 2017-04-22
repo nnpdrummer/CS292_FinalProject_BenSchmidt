@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPlayers = new System.Windows.Forms.DataGridView();
             this.btnShowAll = new System.Windows.Forms.Button();
@@ -72,26 +74,53 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(496, 33);
+            this.label1.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(244, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(92, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Welcome:  ";
             // 
             // dgvPlayers
             // 
+            this.dgvPlayers.AllowUserToAddRows = false;
+            this.dgvPlayers.AllowUserToDeleteRows = false;
+            this.dgvPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvPlayers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlayers.Location = new System.Drawing.Point(242, 49);
+            this.dgvPlayers.Location = new System.Drawing.Point(248, 53);
             this.dgvPlayers.Name = "dgvPlayers";
-            this.dgvPlayers.Size = new System.Drawing.Size(953, 299);
-            this.dgvPlayers.TabIndex = 2;
+            this.dgvPlayers.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPlayers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvPlayers.RowTemplate.ReadOnly = true;
+            this.dgvPlayers.Size = new System.Drawing.Size(1012, 371);
+            this.dgvPlayers.TabIndex = 6;
+            this.dgvPlayers.TabStop = false;
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(10, 325);
+            this.btnShowAll.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnShowAll.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowAll.Location = new System.Drawing.Point(12, 396);
             this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(226, 23);
-            this.btnShowAll.TabIndex = 8;
+            this.btnShowAll.Size = new System.Drawing.Size(230, 28);
+            this.btnShowAll.TabIndex = 1;
             this.btnShowAll.Text = "Show All";
             this.btnShowAll.UseVisualStyleBackColor = true;
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
@@ -99,11 +128,13 @@
             // cboSchool
             // 
             this.cboSchool.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSchool.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboSchool.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSchool.FormattingEnabled = true;
-            this.cboSchool.Location = new System.Drawing.Point(74, 95);
+            this.cboSchool.Location = new System.Drawing.Point(87, 121);
             this.cboSchool.Name = "cboSchool";
-            this.cboSchool.Size = new System.Drawing.Size(121, 21);
-            this.cboSchool.TabIndex = 9;
+            this.cboSchool.Size = new System.Drawing.Size(121, 28);
+            this.cboSchool.TabIndex = 5;
             this.cboSchool.SelectedIndexChanged += new System.EventHandler(this.cboSchool_SelectedIndexChanged);
             // 
             // errorProviderOfficials
@@ -113,9 +144,10 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(563, 33);
+            this.lblUsername.Font = new System.Drawing.Font("Open Sans Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(342, 24);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(35, 13);
+            this.lblUsername.Size = new System.Drawing.Size(55, 22);
             this.lblUsername.TabIndex = 10;
             this.lblUsername.Text = "label2";
             // 
@@ -135,19 +167,21 @@
             this.grpPlayerInformation.Controls.Add(this.cboSchool);
             this.grpPlayerInformation.Controls.Add(this.label3);
             this.grpPlayerInformation.Controls.Add(this.label2);
-            this.grpPlayerInformation.Location = new System.Drawing.Point(10, 49);
+            this.grpPlayerInformation.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpPlayerInformation.Location = new System.Drawing.Point(12, 53);
             this.grpPlayerInformation.Name = "grpPlayerInformation";
-            this.grpPlayerInformation.Size = new System.Drawing.Size(226, 270);
-            this.grpPlayerInformation.TabIndex = 11;
+            this.grpPlayerInformation.Size = new System.Drawing.Size(230, 337);
+            this.grpPlayerInformation.TabIndex = 0;
             this.grpPlayerInformation.TabStop = false;
             this.grpPlayerInformation.Text = "Player Information";
             // 
             // btnPlayerInfoCRUD
             // 
-            this.btnPlayerInfoCRUD.Location = new System.Drawing.Point(41, 239);
+            this.btnPlayerInfoCRUD.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlayerInfoCRUD.Location = new System.Drawing.Point(6, 298);
             this.btnPlayerInfoCRUD.Name = "btnPlayerInfoCRUD";
-            this.btnPlayerInfoCRUD.Size = new System.Drawing.Size(135, 23);
-            this.btnPlayerInfoCRUD.TabIndex = 22;
+            this.btnPlayerInfoCRUD.Size = new System.Drawing.Size(218, 28);
+            this.btnPlayerInfoCRUD.TabIndex = 9;
             this.btnPlayerInfoCRUD.Text = "Search for player(s)";
             this.btnPlayerInfoCRUD.UseVisualStyleBackColor = true;
             this.btnPlayerInfoCRUD.Click += new System.EventHandler(this.btnPlayerInfoCRUD_Click);
@@ -155,29 +189,33 @@
             // cboStanding
             // 
             this.cboStanding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStanding.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboStanding.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStanding.FormattingEnabled = true;
-            this.cboStanding.Location = new System.Drawing.Point(74, 122);
+            this.cboStanding.Location = new System.Drawing.Point(87, 155);
             this.cboStanding.Name = "cboStanding";
-            this.cboStanding.Size = new System.Drawing.Size(121, 21);
-            this.cboStanding.TabIndex = 22;
+            this.cboStanding.Size = new System.Drawing.Size(121, 28);
+            this.cboStanding.TabIndex = 6;
             this.cboStanding.SelectedIndexChanged += new System.EventHandler(this.cboStanding_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 125);
+            this.label6.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.Size = new System.Drawing.Size(73, 20);
             this.label6.TabIndex = 23;
             this.label6.Text = "Standing:";
             // 
             // radRemove
             // 
             this.radRemove.AutoSize = true;
-            this.radRemove.Location = new System.Drawing.Point(124, 45);
+            this.radRemove.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radRemove.Location = new System.Drawing.Point(115, 57);
             this.radRemove.Name = "radRemove";
-            this.radRemove.Size = new System.Drawing.Size(65, 17);
-            this.radRemove.TabIndex = 21;
+            this.radRemove.Size = new System.Drawing.Size(83, 24);
+            this.radRemove.TabIndex = 3;
             this.radRemove.Text = "Remove";
             this.radRemove.UseVisualStyleBackColor = true;
             this.radRemove.CheckedChanged += new System.EventHandler(this.radRemove_CheckedChanged);
@@ -185,10 +223,11 @@
             // radEdit
             // 
             this.radEdit.AutoSize = true;
-            this.radEdit.Location = new System.Drawing.Point(41, 45);
+            this.radEdit.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radEdit.Location = new System.Drawing.Point(36, 57);
             this.radEdit.Name = "radEdit";
-            this.radEdit.Size = new System.Drawing.Size(43, 17);
-            this.radEdit.TabIndex = 20;
+            this.radEdit.Size = new System.Drawing.Size(53, 24);
+            this.radEdit.TabIndex = 2;
             this.radEdit.Text = "Edit";
             this.radEdit.UseVisualStyleBackColor = true;
             this.radEdit.CheckedChanged += new System.EventHandler(this.radEdit_CheckedChanged);
@@ -196,10 +235,11 @@
             // radAdd
             // 
             this.radAdd.AutoSize = true;
-            this.radAdd.Location = new System.Drawing.Point(124, 19);
+            this.radAdd.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radAdd.Location = new System.Drawing.Point(115, 27);
             this.radAdd.Name = "radAdd";
-            this.radAdd.Size = new System.Drawing.Size(44, 17);
-            this.radAdd.TabIndex = 19;
+            this.radAdd.Size = new System.Drawing.Size(54, 24);
+            this.radAdd.TabIndex = 1;
             this.radAdd.Text = "Add";
             this.radAdd.UseVisualStyleBackColor = true;
             this.radAdd.CheckedChanged += new System.EventHandler(this.radAdd_CheckedChanged);
@@ -208,10 +248,11 @@
             // 
             this.radSearch.AutoSize = true;
             this.radSearch.Checked = true;
-            this.radSearch.Location = new System.Drawing.Point(41, 19);
+            this.radSearch.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radSearch.Location = new System.Drawing.Point(36, 27);
             this.radSearch.Name = "radSearch";
-            this.radSearch.Size = new System.Drawing.Size(59, 17);
-            this.radSearch.TabIndex = 18;
+            this.radSearch.Size = new System.Drawing.Size(73, 24);
+            this.radSearch.TabIndex = 0;
             this.radSearch.TabStop = true;
             this.radSearch.Text = "Search";
             this.radSearch.UseVisualStyleBackColor = true;
@@ -220,18 +261,20 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 152);
+            this.label5.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 192);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.Size = new System.Drawing.Size(75, 20);
             this.label5.TabIndex = 17;
             this.label5.Text = "Player ID:";
             // 
             // txtPlayerID
             // 
-            this.txtPlayerID.Location = new System.Drawing.Point(74, 149);
+            this.txtPlayerID.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPlayerID.Location = new System.Drawing.Point(87, 189);
             this.txtPlayerID.Name = "txtPlayerID";
-            this.txtPlayerID.Size = new System.Drawing.Size(121, 20);
-            this.txtPlayerID.TabIndex = 16;
+            this.txtPlayerID.Size = new System.Drawing.Size(121, 28);
+            this.txtPlayerID.TabIndex = 7;
             this.txtPlayerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlayerID_KeyPress);
             // 
             // panel1
@@ -240,62 +283,69 @@
             this.panel1.Controls.Add(this.chkExactMatch);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtSearchPlayerName);
-            this.panel1.Location = new System.Drawing.Point(9, 175);
+            this.panel1.Location = new System.Drawing.Point(6, 223);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(210, 58);
-            this.panel1.TabIndex = 15;
+            this.panel1.Size = new System.Drawing.Size(218, 69);
+            this.panel1.TabIndex = 8;
             // 
             // chkExactMatch
             // 
             this.chkExactMatch.AutoSize = true;
-            this.chkExactMatch.Location = new System.Drawing.Point(57, 33);
+            this.chkExactMatch.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkExactMatch.Location = new System.Drawing.Point(51, 41);
             this.chkExactMatch.Name = "chkExactMatch";
-            this.chkExactMatch.Size = new System.Drawing.Size(86, 17);
-            this.chkExactMatch.TabIndex = 15;
+            this.chkExactMatch.Size = new System.Drawing.Size(111, 24);
+            this.chkExactMatch.TabIndex = 1;
             this.chkExactMatch.Text = "Exact Match";
             this.chkExactMatch.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 14;
             this.label4.Text = "Name:";
             // 
             // txtSearchPlayerName
             // 
+            this.txtSearchPlayerName.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchPlayerName.Location = new System.Drawing.Point(64, 7);
             this.txtSearchPlayerName.Name = "txtSearchPlayerName";
-            this.txtSearchPlayerName.Size = new System.Drawing.Size(121, 20);
-            this.txtSearchPlayerName.TabIndex = 13;
+            this.txtSearchPlayerName.Size = new System.Drawing.Size(121, 28);
+            this.txtSearchPlayerName.TabIndex = 0;
             // 
             // cboPosition
             // 
             this.cboPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPosition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboPosition.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPosition.FormattingEnabled = true;
-            this.cboPosition.Location = new System.Drawing.Point(74, 68);
+            this.cboPosition.Location = new System.Drawing.Point(87, 87);
             this.cboPosition.Name = "cboPosition";
-            this.cboPosition.Size = new System.Drawing.Size(121, 21);
-            this.cboPosition.TabIndex = 12;
+            this.cboPosition.Size = new System.Drawing.Size(121, 28);
+            this.cboPosition.TabIndex = 4;
             this.cboPosition.SelectedIndexChanged += new System.EventHandler(this.cboPosition_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 98);
+            this.label3.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 124);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(59, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "School:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 71);
+            this.label2.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 90);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(69, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "Position:";
             // 
@@ -303,9 +353,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 353);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1207, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1272, 22);
             this.statusStrip1.TabIndex = 13;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -320,8 +370,8 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1207, 24);
-            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Size = new System.Drawing.Size(1272, 25);
+            this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
@@ -331,41 +381,44 @@
             this.addOfficialToolStripMenuItem,
             this.toolStripMenuItem1,
             this.logOutToolStripMenuItem});
+            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // showAllToolStripMenuItem
             // 
             this.showAllToolStripMenuItem.Name = "showAllToolStripMenuItem";
-            this.showAllToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.showAllToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.showAllToolStripMenuItem.Text = "Show All";
             this.showAllToolStripMenuItem.Click += new System.EventHandler(this.showAllToolStripMenuItem_Click);
             // 
             // addOfficialToolStripMenuItem
             // 
             this.addOfficialToolStripMenuItem.Name = "addOfficialToolStripMenuItem";
-            this.addOfficialToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.addOfficialToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.addOfficialToolStripMenuItem.Text = "Add Official";
             this.addOfficialToolStripMenuItem.Click += new System.EventHandler(this.addOfficialToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(134, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(137, 6);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.logOutToolStripMenuItem.Text = "Log out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // frmOfficials
             // 
+            this.AcceptButton = this.btnPlayerInfoCRUD;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1207, 375);
+            this.CancelButton = this.btnShowAll;
+            this.ClientSize = new System.Drawing.Size(1272, 456);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.grpPlayerInformation);

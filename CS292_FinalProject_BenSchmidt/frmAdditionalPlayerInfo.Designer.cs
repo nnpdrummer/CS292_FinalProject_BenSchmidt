@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grpAdditionalPlayerInfo = new System.Windows.Forms.GroupBox();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnAddEditPlayer = new System.Windows.Forms.Button();
-            this.grpOffense = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtOffensiveFumbles = new System.Windows.Forms.TextBox();
             this.grpReceivingInfo = new System.Windows.Forms.GroupBox();
@@ -42,6 +39,18 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtReceptions = new System.Windows.Forms.TextBox();
             this.txtReceivingYards = new System.Windows.Forms.TextBox();
+            this.grpPassingInfo = new System.Windows.Forms.GroupBox();
+            this.txtPassingInterceptions = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtPassingYards = new System.Windows.Forms.TextBox();
+            this.txtPassingTDs = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPassingAttempts = new System.Windows.Forms.TextBox();
+            this.txtPassingCompletions = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.grpRushingInfo = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtRushingTDs = new System.Windows.Forms.TextBox();
@@ -49,17 +58,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtRushingAttempts = new System.Windows.Forms.TextBox();
-            this.grpPassingInfo = new System.Windows.Forms.GroupBox();
-            this.txtPassingInterceptions = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtPassingTDs = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtPassingYards = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtPassingAttempts = new System.Windows.Forms.TextBox();
-            this.txtPassingCompletions = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.btnAddEditPlayer = new System.Windows.Forms.Button();
             this.grpSpecialTeamsInfo = new System.Windows.Forms.GroupBox();
             this.txtTouchbacks = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -76,8 +75,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtSafeties = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtDefensiveTDs = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.txtDefensiveInterceptions = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtSacks = new System.Windows.Forms.TextBox();
@@ -88,10 +85,9 @@
             this.label20 = new System.Windows.Forms.Label();
             this.errorProviderAPI = new System.Windows.Forms.ErrorProvider(this.components);
             this.grpAdditionalPlayerInfo.SuspendLayout();
-            this.grpOffense.SuspendLayout();
             this.grpReceivingInfo.SuspendLayout();
-            this.grpRushingInfo.SuspendLayout();
             this.grpPassingInfo.SuspendLayout();
+            this.grpRushingInfo.SuspendLayout();
             this.grpSpecialTeamsInfo.SuspendLayout();
             this.grpDefenseInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAPI)).BeginInit();
@@ -100,65 +96,38 @@
             // grpAdditionalPlayerInfo
             // 
             this.grpAdditionalPlayerInfo.Controls.Add(this.btnClear);
+            this.grpAdditionalPlayerInfo.Controls.Add(this.grpPassingInfo);
             this.grpAdditionalPlayerInfo.Controls.Add(this.btnAddEditPlayer);
-            this.grpAdditionalPlayerInfo.Controls.Add(this.grpOffense);
+            this.grpAdditionalPlayerInfo.Controls.Add(this.grpRushingInfo);
+            this.grpAdditionalPlayerInfo.Controls.Add(this.label17);
+            this.grpAdditionalPlayerInfo.Controls.Add(this.txtOffensiveFumbles);
+            this.grpAdditionalPlayerInfo.Controls.Add(this.grpReceivingInfo);
             this.grpAdditionalPlayerInfo.Controls.Add(this.grpSpecialTeamsInfo);
             this.grpAdditionalPlayerInfo.Controls.Add(this.grpDefenseInfo);
+            this.grpAdditionalPlayerInfo.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAdditionalPlayerInfo.Location = new System.Drawing.Point(12, 12);
             this.grpAdditionalPlayerInfo.Name = "grpAdditionalPlayerInfo";
-            this.grpAdditionalPlayerInfo.Size = new System.Drawing.Size(421, 456);
+            this.grpAdditionalPlayerInfo.Size = new System.Drawing.Size(732, 379);
             this.grpAdditionalPlayerInfo.TabIndex = 15;
             this.grpAdditionalPlayerInfo.TabStop = false;
             this.grpAdditionalPlayerInfo.Text = "Additional Player Information (Optional)";
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(268, 414);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(90, 23);
-            this.btnClear.TabIndex = 18;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnAddEditPlayer
-            // 
-            this.btnAddEditPlayer.Location = new System.Drawing.Point(268, 385);
-            this.btnAddEditPlayer.Name = "btnAddEditPlayer";
-            this.btnAddEditPlayer.Size = new System.Drawing.Size(90, 23);
-            this.btnAddEditPlayer.TabIndex = 15;
-            this.btnAddEditPlayer.Text = "Add/Edit Player";
-            this.btnAddEditPlayer.UseVisualStyleBackColor = true;
-            this.btnAddEditPlayer.Click += new System.EventHandler(this.btnAddEditPlayer_Click);
-            // 
-            // grpOffense
-            // 
-            this.grpOffense.Controls.Add(this.label17);
-            this.grpOffense.Controls.Add(this.txtOffensiveFumbles);
-            this.grpOffense.Controls.Add(this.grpReceivingInfo);
-            this.grpOffense.Controls.Add(this.grpRushingInfo);
-            this.grpOffense.Controls.Add(this.grpPassingInfo);
-            this.grpOffense.Location = new System.Drawing.Point(6, 19);
-            this.grpOffense.Name = "grpOffense";
-            this.grpOffense.Size = new System.Drawing.Size(202, 431);
-            this.grpOffense.TabIndex = 15;
-            this.grpOffense.TabStop = false;
-            this.grpOffense.Text = "Offense";
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(14, 393);
+            this.label17.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(514, 270);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(49, 13);
+            this.label17.Size = new System.Drawing.Size(72, 20);
             this.label17.TabIndex = 17;
             this.label17.Text = "Fumbles:";
             // 
             // txtOffensiveFumbles
             // 
-            this.txtOffensiveFumbles.Location = new System.Drawing.Point(124, 390);
+            this.txtOffensiveFumbles.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOffensiveFumbles.Location = new System.Drawing.Point(649, 267);
             this.txtOffensiveFumbles.Name = "txtOffensiveFumbles";
-            this.txtOffensiveFumbles.Size = new System.Drawing.Size(51, 20);
+            this.txtOffensiveFumbles.Size = new System.Drawing.Size(51, 28);
             this.txtOffensiveFumbles.TabIndex = 16;
             // 
             // grpReceivingInfo
@@ -169,9 +138,9 @@
             this.grpReceivingInfo.Controls.Add(this.label13);
             this.grpReceivingInfo.Controls.Add(this.txtReceptions);
             this.grpReceivingInfo.Controls.Add(this.txtReceivingYards);
-            this.grpReceivingInfo.Location = new System.Drawing.Point(6, 176);
+            this.grpReceivingInfo.Location = new System.Drawing.Point(258, 27);
             this.grpReceivingInfo.Name = "grpReceivingInfo";
-            this.grpReceivingInfo.Size = new System.Drawing.Size(191, 99);
+            this.grpReceivingInfo.Size = new System.Drawing.Size(250, 133);
             this.grpReceivingInfo.TabIndex = 18;
             this.grpReceivingInfo.TabStop = false;
             this.grpReceivingInfo.Text = "Receiving Info";
@@ -179,50 +148,176 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 74);
+            this.label14.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(6, 98);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(81, 13);
+            this.label14.Size = new System.Drawing.Size(108, 20);
             this.label14.TabIndex = 17;
             this.label14.Text = "Receiving TDs:";
             // 
             // txtReceivingTDs
             // 
-            this.txtReceivingTDs.Location = new System.Drawing.Point(118, 71);
+            this.txtReceivingTDs.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceivingTDs.Location = new System.Drawing.Point(177, 95);
             this.txtReceivingTDs.Name = "txtReceivingTDs";
-            this.txtReceivingTDs.Size = new System.Drawing.Size(51, 20);
+            this.txtReceivingTDs.Size = new System.Drawing.Size(51, 28);
             this.txtReceivingTDs.TabIndex = 16;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 48);
+            this.label11.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(6, 64);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 13);
+            this.label11.Size = new System.Drawing.Size(88, 20);
             this.label11.TabIndex = 11;
             this.label11.Text = "Receptions:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 22);
+            this.label13.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 30);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 13);
+            this.label13.Size = new System.Drawing.Size(120, 20);
             this.label13.TabIndex = 15;
             this.label13.Text = "Receiving Yards:";
             // 
             // txtReceptions
             // 
-            this.txtReceptions.Location = new System.Drawing.Point(118, 45);
+            this.txtReceptions.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceptions.Location = new System.Drawing.Point(177, 61);
             this.txtReceptions.Name = "txtReceptions";
-            this.txtReceptions.Size = new System.Drawing.Size(51, 20);
+            this.txtReceptions.Size = new System.Drawing.Size(51, 28);
             this.txtReceptions.TabIndex = 10;
             // 
             // txtReceivingYards
             // 
-            this.txtReceivingYards.Location = new System.Drawing.Point(118, 19);
+            this.txtReceivingYards.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceivingYards.Location = new System.Drawing.Point(177, 27);
             this.txtReceivingYards.Name = "txtReceivingYards";
-            this.txtReceivingYards.Size = new System.Drawing.Size(51, 20);
+            this.txtReceivingYards.Size = new System.Drawing.Size(51, 28);
             this.txtReceivingYards.TabIndex = 14;
+            // 
+            // grpPassingInfo
+            // 
+            this.grpPassingInfo.Controls.Add(this.txtPassingInterceptions);
+            this.grpPassingInfo.Controls.Add(this.label19);
+            this.grpPassingInfo.Controls.Add(this.label18);
+            this.grpPassingInfo.Controls.Add(this.txtPassingYards);
+            this.grpPassingInfo.Controls.Add(this.txtPassingTDs);
+            this.grpPassingInfo.Controls.Add(this.label8);
+            this.grpPassingInfo.Controls.Add(this.label16);
+            this.grpPassingInfo.Controls.Add(this.label9);
+            this.grpPassingInfo.Controls.Add(this.txtPassingAttempts);
+            this.grpPassingInfo.Controls.Add(this.txtPassingCompletions);
+            this.grpPassingInfo.Location = new System.Drawing.Point(6, 27);
+            this.grpPassingInfo.Name = "grpPassingInfo";
+            this.grpPassingInfo.Size = new System.Drawing.Size(246, 214);
+            this.grpPassingInfo.TabIndex = 16;
+            this.grpPassingInfo.TabStop = false;
+            this.grpPassingInfo.Text = "Passing Info";
+            // 
+            // txtPassingInterceptions
+            // 
+            this.txtPassingInterceptions.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassingInterceptions.Location = new System.Drawing.Point(171, 157);
+            this.txtPassingInterceptions.Name = "txtPassingInterceptions";
+            this.txtPassingInterceptions.Size = new System.Drawing.Size(51, 28);
+            this.txtPassingInterceptions.TabIndex = 24;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(6, 160);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(159, 20);
+            this.label19.TabIndex = 25;
+            this.label19.Text = "Passing Interceptions:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(8, 126);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(95, 20);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Passing TDs:";
+            // 
+            // txtPassingYards
+            // 
+            this.txtPassingYards.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassingYards.Location = new System.Drawing.Point(172, 21);
+            this.txtPassingYards.Name = "txtPassingYards";
+            this.txtPassingYards.Size = new System.Drawing.Size(51, 28);
+            this.txtPassingYards.TabIndex = 4;
+            // 
+            // txtPassingTDs
+            // 
+            this.txtPassingTDs.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassingTDs.Location = new System.Drawing.Point(171, 123);
+            this.txtPassingTDs.Name = "txtPassingTDs";
+            this.txtPassingTDs.Size = new System.Drawing.Size(51, 28);
+            this.txtPassingTDs.TabIndex = 22;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(8, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 20);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Passing Yards:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(8, 92);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(156, 20);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "Passing Completions:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(131, 20);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Passing Attempts:";
+            // 
+            // txtPassingAttempts
+            // 
+            this.txtPassingAttempts.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassingAttempts.Location = new System.Drawing.Point(172, 55);
+            this.txtPassingAttempts.Name = "txtPassingAttempts";
+            this.txtPassingAttempts.Size = new System.Drawing.Size(51, 28);
+            this.txtPassingAttempts.TabIndex = 6;
+            // 
+            // txtPassingCompletions
+            // 
+            this.txtPassingCompletions.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassingCompletions.Location = new System.Drawing.Point(172, 89);
+            this.txtPassingCompletions.Name = "txtPassingCompletions";
+            this.txtPassingCompletions.Size = new System.Drawing.Size(51, 28);
+            this.txtPassingCompletions.TabIndex = 20;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(514, 342);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(209, 28);
+            this.btnClear.TabIndex = 18;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // grpRushingInfo
             // 
@@ -232,9 +327,9 @@
             this.grpRushingInfo.Controls.Add(this.label12);
             this.grpRushingInfo.Controls.Add(this.label15);
             this.grpRushingInfo.Controls.Add(this.txtRushingAttempts);
-            this.grpRushingInfo.Location = new System.Drawing.Point(6, 281);
+            this.grpRushingInfo.Location = new System.Drawing.Point(6, 247);
             this.grpRushingInfo.Name = "grpRushingInfo";
-            this.grpRushingInfo.Size = new System.Drawing.Size(191, 103);
+            this.grpRushingInfo.Size = new System.Drawing.Size(246, 123);
             this.grpRushingInfo.TabIndex = 17;
             this.grpRushingInfo.TabStop = false;
             this.grpRushingInfo.Text = "Rushing Info";
@@ -242,149 +337,67 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 74);
+            this.label10.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 89);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.Size = new System.Drawing.Size(98, 20);
             this.label10.TabIndex = 21;
             this.label10.Text = "Rushing TDs:";
             // 
             // txtRushingTDs
             // 
-            this.txtRushingTDs.Location = new System.Drawing.Point(118, 71);
+            this.txtRushingTDs.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRushingTDs.Location = new System.Drawing.Point(171, 86);
             this.txtRushingTDs.Name = "txtRushingTDs";
-            this.txtRushingTDs.Size = new System.Drawing.Size(51, 20);
+            this.txtRushingTDs.Size = new System.Drawing.Size(51, 28);
             this.txtRushingTDs.TabIndex = 20;
             // 
             // txtRushingYards
             // 
-            this.txtRushingYards.Location = new System.Drawing.Point(118, 19);
+            this.txtRushingYards.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRushingYards.Location = new System.Drawing.Point(172, 18);
             this.txtRushingYards.Name = "txtRushingYards";
-            this.txtRushingYards.Size = new System.Drawing.Size(51, 20);
+            this.txtRushingYards.Size = new System.Drawing.Size(51, 28);
             this.txtRushingYards.TabIndex = 12;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 22);
+            this.label12.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(8, 21);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 13);
+            this.label12.Size = new System.Drawing.Size(110, 20);
             this.label12.TabIndex = 13;
             this.label12.Text = "Rushing Yards:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 48);
+            this.label15.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(6, 55);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(93, 13);
+            this.label15.Size = new System.Drawing.Size(134, 20);
             this.label15.TabIndex = 19;
             this.label15.Text = "Rushing Attempts:";
             // 
             // txtRushingAttempts
             // 
-            this.txtRushingAttempts.Location = new System.Drawing.Point(118, 45);
+            this.txtRushingAttempts.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRushingAttempts.Location = new System.Drawing.Point(171, 52);
             this.txtRushingAttempts.Name = "txtRushingAttempts";
-            this.txtRushingAttempts.Size = new System.Drawing.Size(51, 20);
+            this.txtRushingAttempts.Size = new System.Drawing.Size(51, 28);
             this.txtRushingAttempts.TabIndex = 18;
             // 
-            // grpPassingInfo
+            // btnAddEditPlayer
             // 
-            this.grpPassingInfo.Controls.Add(this.txtPassingInterceptions);
-            this.grpPassingInfo.Controls.Add(this.label19);
-            this.grpPassingInfo.Controls.Add(this.txtPassingTDs);
-            this.grpPassingInfo.Controls.Add(this.label18);
-            this.grpPassingInfo.Controls.Add(this.txtPassingYards);
-            this.grpPassingInfo.Controls.Add(this.label8);
-            this.grpPassingInfo.Controls.Add(this.label16);
-            this.grpPassingInfo.Controls.Add(this.txtPassingAttempts);
-            this.grpPassingInfo.Controls.Add(this.txtPassingCompletions);
-            this.grpPassingInfo.Controls.Add(this.label9);
-            this.grpPassingInfo.Location = new System.Drawing.Point(6, 19);
-            this.grpPassingInfo.Name = "grpPassingInfo";
-            this.grpPassingInfo.Size = new System.Drawing.Size(191, 151);
-            this.grpPassingInfo.TabIndex = 16;
-            this.grpPassingInfo.TabStop = false;
-            this.grpPassingInfo.Text = "Passing Info";
-            // 
-            // txtPassingInterceptions
-            // 
-            this.txtPassingInterceptions.Location = new System.Drawing.Point(118, 123);
-            this.txtPassingInterceptions.Name = "txtPassingInterceptions";
-            this.txtPassingInterceptions.Size = new System.Drawing.Size(51, 20);
-            this.txtPassingInterceptions.TabIndex = 24;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(8, 126);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(111, 13);
-            this.label19.TabIndex = 25;
-            this.label19.Text = "Passing Interceptions:";
-            // 
-            // txtPassingTDs
-            // 
-            this.txtPassingTDs.Location = new System.Drawing.Point(118, 97);
-            this.txtPassingTDs.Name = "txtPassingTDs";
-            this.txtPassingTDs.Size = new System.Drawing.Size(51, 20);
-            this.txtPassingTDs.TabIndex = 22;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(8, 100);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 13);
-            this.label18.TabIndex = 23;
-            this.label18.Text = "Passing TDs:";
-            // 
-            // txtPassingYards
-            // 
-            this.txtPassingYards.Location = new System.Drawing.Point(118, 19);
-            this.txtPassingYards.Name = "txtPassingYards";
-            this.txtPassingYards.Size = new System.Drawing.Size(51, 20);
-            this.txtPassingYards.TabIndex = 4;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Passing Yards:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 74);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(107, 13);
-            this.label16.TabIndex = 21;
-            this.label16.Text = "Passing Completions:";
-            // 
-            // txtPassingAttempts
-            // 
-            this.txtPassingAttempts.Location = new System.Drawing.Point(118, 45);
-            this.txtPassingAttempts.Name = "txtPassingAttempts";
-            this.txtPassingAttempts.Size = new System.Drawing.Size(51, 20);
-            this.txtPassingAttempts.TabIndex = 6;
-            // 
-            // txtPassingCompletions
-            // 
-            this.txtPassingCompletions.Location = new System.Drawing.Point(118, 71);
-            this.txtPassingCompletions.Name = "txtPassingCompletions";
-            this.txtPassingCompletions.Size = new System.Drawing.Size(51, 20);
-            this.txtPassingCompletions.TabIndex = 20;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 48);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Passing Attempts:";
+            this.btnAddEditPlayer.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddEditPlayer.Location = new System.Drawing.Point(514, 308);
+            this.btnAddEditPlayer.Name = "btnAddEditPlayer";
+            this.btnAddEditPlayer.Size = new System.Drawing.Size(209, 28);
+            this.btnAddEditPlayer.TabIndex = 15;
+            this.btnAddEditPlayer.Text = "Add/Edit Player";
+            this.btnAddEditPlayer.UseVisualStyleBackColor = true;
+            this.btnAddEditPlayer.Click += new System.EventHandler(this.btnAddEditPlayer_Click);
             // 
             // grpSpecialTeamsInfo
             // 
@@ -398,90 +411,100 @@
             this.grpSpecialTeamsInfo.Controls.Add(this.label27);
             this.grpSpecialTeamsInfo.Controls.Add(this.txtFieldGoalsAttempted);
             this.grpSpecialTeamsInfo.Controls.Add(this.label26);
-            this.grpSpecialTeamsInfo.Location = new System.Drawing.Point(214, 230);
+            this.grpSpecialTeamsInfo.Location = new System.Drawing.Point(258, 166);
             this.grpSpecialTeamsInfo.Name = "grpSpecialTeamsInfo";
-            this.grpSpecialTeamsInfo.Size = new System.Drawing.Size(201, 149);
+            this.grpSpecialTeamsInfo.Size = new System.Drawing.Size(250, 204);
             this.grpSpecialTeamsInfo.TabIndex = 17;
             this.grpSpecialTeamsInfo.TabStop = false;
             this.grpSpecialTeamsInfo.Text = "Special Teams Info";
             // 
             // txtTouchbacks
             // 
-            this.txtTouchbacks.Location = new System.Drawing.Point(130, 123);
+            this.txtTouchbacks.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTouchbacks.Location = new System.Drawing.Point(177, 163);
             this.txtTouchbacks.Name = "txtTouchbacks";
-            this.txtTouchbacks.Size = new System.Drawing.Size(51, 20);
+            this.txtTouchbacks.Size = new System.Drawing.Size(51, 28);
             this.txtTouchbacks.TabIndex = 26;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(8, 126);
+            this.label30.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(6, 166);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(70, 13);
+            this.label30.Size = new System.Drawing.Size(94, 20);
             this.label30.TabIndex = 27;
             this.label30.Text = "Touchbacks:";
             // 
             // txtKickYards
             // 
-            this.txtKickYards.Location = new System.Drawing.Point(130, 97);
+            this.txtKickYards.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKickYards.Location = new System.Drawing.Point(177, 129);
             this.txtKickYards.Name = "txtKickYards";
-            this.txtKickYards.Size = new System.Drawing.Size(51, 20);
+            this.txtKickYards.Size = new System.Drawing.Size(51, 28);
             this.txtKickYards.TabIndex = 24;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(8, 100);
+            this.label29.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(6, 132);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(61, 13);
+            this.label29.Size = new System.Drawing.Size(83, 20);
             this.label29.TabIndex = 25;
             this.label29.Text = "Kick Yards:";
             // 
             // txtPuntYards
             // 
-            this.txtPuntYards.Location = new System.Drawing.Point(130, 71);
+            this.txtPuntYards.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPuntYards.Location = new System.Drawing.Point(177, 95);
             this.txtPuntYards.Name = "txtPuntYards";
-            this.txtPuntYards.Size = new System.Drawing.Size(51, 20);
+            this.txtPuntYards.Size = new System.Drawing.Size(51, 28);
             this.txtPuntYards.TabIndex = 22;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(8, 74);
+            this.label28.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(6, 98);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(62, 13);
+            this.label28.Size = new System.Drawing.Size(87, 20);
             this.label28.TabIndex = 23;
             this.label28.Text = "Punt Yards:";
             // 
             // txtFieldGoalsMade
             // 
-            this.txtFieldGoalsMade.Location = new System.Drawing.Point(130, 45);
+            this.txtFieldGoalsMade.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldGoalsMade.Location = new System.Drawing.Point(177, 61);
             this.txtFieldGoalsMade.Name = "txtFieldGoalsMade";
-            this.txtFieldGoalsMade.Size = new System.Drawing.Size(51, 20);
+            this.txtFieldGoalsMade.Size = new System.Drawing.Size(51, 28);
             this.txtFieldGoalsMade.TabIndex = 20;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(8, 48);
+            this.label27.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(6, 64);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(92, 13);
+            this.label27.Size = new System.Drawing.Size(132, 20);
             this.label27.TabIndex = 21;
             this.label27.Text = "Field Goals Made:";
             // 
             // txtFieldGoalsAttempted
             // 
-            this.txtFieldGoalsAttempted.Location = new System.Drawing.Point(130, 19);
+            this.txtFieldGoalsAttempted.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldGoalsAttempted.Location = new System.Drawing.Point(177, 27);
             this.txtFieldGoalsAttempted.Name = "txtFieldGoalsAttempted";
-            this.txtFieldGoalsAttempted.Size = new System.Drawing.Size(51, 20);
+            this.txtFieldGoalsAttempted.Size = new System.Drawing.Size(51, 28);
             this.txtFieldGoalsAttempted.TabIndex = 18;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(8, 22);
+            this.label26.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(6, 30);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(113, 13);
+            this.label26.Size = new System.Drawing.Size(165, 20);
             this.label26.TabIndex = 19;
             this.label26.Text = "Field Goals Attempted:";
             // 
@@ -491,8 +514,6 @@
             this.grpDefenseInfo.Controls.Add(this.label6);
             this.grpDefenseInfo.Controls.Add(this.txtSafeties);
             this.grpDefenseInfo.Controls.Add(this.label25);
-            this.grpDefenseInfo.Controls.Add(this.txtDefensiveTDs);
-            this.grpDefenseInfo.Controls.Add(this.label24);
             this.grpDefenseInfo.Controls.Add(this.txtDefensiveInterceptions);
             this.grpDefenseInfo.Controls.Add(this.label23);
             this.grpDefenseInfo.Controls.Add(this.txtSacks);
@@ -501,122 +522,118 @@
             this.grpDefenseInfo.Controls.Add(this.label21);
             this.grpDefenseInfo.Controls.Add(this.txtTackles);
             this.grpDefenseInfo.Controls.Add(this.label20);
-            this.grpDefenseInfo.Location = new System.Drawing.Point(214, 19);
+            this.grpDefenseInfo.Location = new System.Drawing.Point(514, 27);
             this.grpDefenseInfo.Name = "grpDefenseInfo";
-            this.grpDefenseInfo.Size = new System.Drawing.Size(201, 205);
+            this.grpDefenseInfo.Size = new System.Drawing.Size(209, 234);
             this.grpDefenseInfo.TabIndex = 16;
             this.grpDefenseInfo.TabStop = false;
             this.grpDefenseInfo.Text = "Defense Info";
             // 
             // txtForcedFumbles
             // 
-            this.txtForcedFumbles.Location = new System.Drawing.Point(130, 175);
+            this.txtForcedFumbles.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtForcedFumbles.Location = new System.Drawing.Point(135, 197);
             this.txtForcedFumbles.Name = "txtForcedFumbles";
-            this.txtForcedFumbles.Size = new System.Drawing.Size(51, 20);
+            this.txtForcedFumbles.Size = new System.Drawing.Size(51, 28);
             this.txtForcedFumbles.TabIndex = 18;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 178);
+            this.label6.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 200);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 13);
+            this.label6.Size = new System.Drawing.Size(123, 20);
             this.label6.TabIndex = 19;
             this.label6.Text = "Forced Fumbles:";
             // 
             // txtSafeties
             // 
-            this.txtSafeties.Location = new System.Drawing.Point(130, 149);
+            this.txtSafeties.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSafeties.Location = new System.Drawing.Point(135, 163);
             this.txtSafeties.Name = "txtSafeties";
-            this.txtSafeties.Size = new System.Drawing.Size(51, 20);
+            this.txtSafeties.Size = new System.Drawing.Size(51, 28);
             this.txtSafeties.TabIndex = 16;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(8, 152);
+            this.label25.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(6, 166);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(51, 13);
+            this.label25.Size = new System.Drawing.Size(71, 20);
             this.label25.TabIndex = 17;
             this.label25.Text = "Safteties:";
             // 
-            // txtDefensiveTDs
-            // 
-            this.txtDefensiveTDs.Location = new System.Drawing.Point(130, 123);
-            this.txtDefensiveTDs.Name = "txtDefensiveTDs";
-            this.txtDefensiveTDs.Size = new System.Drawing.Size(51, 20);
-            this.txtDefensiveTDs.TabIndex = 14;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(8, 126);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(30, 13);
-            this.label24.TabIndex = 15;
-            this.label24.Text = "TDs:";
-            // 
             // txtDefensiveInterceptions
             // 
-            this.txtDefensiveInterceptions.Location = new System.Drawing.Point(130, 97);
+            this.txtDefensiveInterceptions.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDefensiveInterceptions.Location = new System.Drawing.Point(135, 129);
             this.txtDefensiveInterceptions.Name = "txtDefensiveInterceptions";
-            this.txtDefensiveInterceptions.Size = new System.Drawing.Size(51, 20);
+            this.txtDefensiveInterceptions.Size = new System.Drawing.Size(51, 28);
             this.txtDefensiveInterceptions.TabIndex = 12;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(8, 100);
+            this.label23.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(6, 132);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(71, 13);
+            this.label23.Size = new System.Drawing.Size(103, 20);
             this.label23.TabIndex = 13;
             this.label23.Text = "Interceptions:";
             // 
             // txtSacks
             // 
-            this.txtSacks.Location = new System.Drawing.Point(130, 71);
+            this.txtSacks.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSacks.Location = new System.Drawing.Point(135, 95);
             this.txtSacks.Name = "txtSacks";
-            this.txtSacks.Size = new System.Drawing.Size(51, 20);
+            this.txtSacks.Size = new System.Drawing.Size(51, 28);
             this.txtSacks.TabIndex = 10;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(8, 74);
+            this.label22.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(6, 98);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(40, 13);
+            this.label22.Size = new System.Drawing.Size(51, 20);
             this.label22.TabIndex = 11;
             this.label22.Text = "Sacks:";
             // 
             // txtAssistedTackles
             // 
-            this.txtAssistedTackles.Location = new System.Drawing.Point(130, 45);
+            this.txtAssistedTackles.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAssistedTackles.Location = new System.Drawing.Point(135, 61);
             this.txtAssistedTackles.Name = "txtAssistedTackles";
-            this.txtAssistedTackles.Size = new System.Drawing.Size(51, 20);
+            this.txtAssistedTackles.Size = new System.Drawing.Size(51, 28);
             this.txtAssistedTackles.TabIndex = 8;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(8, 48);
+            this.label21.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(6, 64);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(90, 13);
+            this.label21.Size = new System.Drawing.Size(123, 20);
             this.label21.TabIndex = 9;
             this.label21.Text = "Assisted Tackles:";
             // 
             // txtTackles
             // 
-            this.txtTackles.Location = new System.Drawing.Point(130, 19);
+            this.txtTackles.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTackles.Location = new System.Drawing.Point(135, 27);
             this.txtTackles.Name = "txtTackles";
-            this.txtTackles.Size = new System.Drawing.Size(51, 20);
+            this.txtTackles.Size = new System.Drawing.Size(51, 28);
             this.txtTackles.TabIndex = 6;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(8, 22);
+            this.label20.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(6, 30);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(48, 13);
+            this.label20.Size = new System.Drawing.Size(63, 20);
             this.label20.TabIndex = 7;
             this.label20.Text = "Tackles:";
             // 
@@ -626,22 +643,23 @@
             // 
             // frmAdditionalPlayerInfo
             // 
+            this.AcceptButton = this.btnAddEditPlayer;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 477);
+            this.CancelButton = this.btnClear;
+            this.ClientSize = new System.Drawing.Size(752, 396);
             this.Controls.Add(this.grpAdditionalPlayerInfo);
             this.Name = "frmAdditionalPlayerInfo";
             this.Text = "frmAdditionalPlayerInfo";
             this.Load += new System.EventHandler(this.frmAdditionalPlayerInfo_Load);
             this.grpAdditionalPlayerInfo.ResumeLayout(false);
-            this.grpOffense.ResumeLayout(false);
-            this.grpOffense.PerformLayout();
+            this.grpAdditionalPlayerInfo.PerformLayout();
             this.grpReceivingInfo.ResumeLayout(false);
             this.grpReceivingInfo.PerformLayout();
-            this.grpRushingInfo.ResumeLayout(false);
-            this.grpRushingInfo.PerformLayout();
             this.grpPassingInfo.ResumeLayout(false);
             this.grpPassingInfo.PerformLayout();
+            this.grpRushingInfo.ResumeLayout(false);
+            this.grpRushingInfo.PerformLayout();
             this.grpSpecialTeamsInfo.ResumeLayout(false);
             this.grpSpecialTeamsInfo.PerformLayout();
             this.grpDefenseInfo.ResumeLayout(false);
@@ -656,7 +674,6 @@
         private System.Windows.Forms.GroupBox grpAdditionalPlayerInfo;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnAddEditPlayer;
-        private System.Windows.Forms.GroupBox grpOffense;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtOffensiveFumbles;
         private System.Windows.Forms.GroupBox grpReceivingInfo;
@@ -700,8 +717,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSafeties;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtDefensiveTDs;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txtDefensiveInterceptions;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtSacks;
