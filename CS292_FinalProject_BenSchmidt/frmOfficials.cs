@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Name: Ben Schmidt
+ * Project: Final Project
+ * Date:
+ * Purpose:
+ */
+
+using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SQLite;

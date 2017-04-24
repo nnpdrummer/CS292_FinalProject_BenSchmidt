@@ -6,13 +6,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
@@ -22,6 +15,7 @@ namespace CS292_FinalProject_BenSchmidt
     {
         private const string DB_FOOTBALL = "Data Source = ../../highSchoolFootball.db; Version = 3";
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
+        private SQLiteCommand cmd;
         private string sql;
 
         public frmLogin() { InitializeComponent(); }
@@ -67,9 +61,9 @@ namespace CS292_FinalProject_BenSchmidt
             sql = "SELECT COUNT(*) FROM LeagueOfficials WHERE Username = @Username AND Password = @Password";
             connection.Open();
 
-            SQLiteCommand cmd = new SQLiteCommand(sql, connection);
-            cmd.Parameters.AddWithValue("@Username", txtLoginUsername.Text);
-            cmd.Parameters.AddWithValue("@Password", txtLoginPassword.Text);
+            cmd = new SQLiteCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@Username", username);
+            cmd.Parameters.AddWithValue("@Password", password);
             int linesCounted = Convert.ToInt32(cmd.ExecuteScalar());
             connection.Close();
 
@@ -80,6 +74,7 @@ namespace CS292_FinalProject_BenSchmidt
                 frmLogin_Load(null, null);
                 this.Hide();
                 officials.ShowDialog();
+                lblStatus.Text = "You have successfully logged out!";
                 this.Show();
             }
             else if (linesCounted == 0)
@@ -90,13 +85,87 @@ namespace CS292_FinalProject_BenSchmidt
         }
 
         /// <summary>
-        /// TODO: change implementaton to check for a unique pair of username nad password.
+        /// Adds the user's login information to the RegisterOfficial table if
+        /// their username does not match a username that already exists in the
+        /// LeagueOfficials and RegisterOffical tables.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            if (!validCredentials()) return;
 
+            lblStatus.Text = "";
+            errorProviderLogin.Clear();
+            sql = "SELECT COUNT(*) FROM RegisterOfficial WHERE Username = @Username";
+            int linesCounted = searchForMatch();
+
+            if (linesCounted == 1)
+            {
+                lblStatus.Text = "Username: " + txtRegUsername.Text + " is already awaiting approval! Please enter another.";
+                errorProviderLogin.SetError(txtRegUsername, "Please enter another username");
+            }
+            else if (linesCounted == 0)
+            {
+                sql = "SELECT COUNT(*) FROM LeagueOfficials WHERE Username = @Username";
+                linesCounted = searchForMatch();
+
+                if (linesCounted == 1)
+                {
+                    lblStatus.Text = "Username: " + txtRegUsername.Text + " is already taken! Please enter another.";
+                    errorProviderLogin.SetError(txtRegUsername, "Please enter another username");
+                }
+                else if (linesCounted == 0) register();
+            }
+        }
+
+        /// <summary>
+        /// Ensures that the password and username fields for
+        /// the register group box contain text.
+        /// </summary>
+        /// <returns>True if they contain text, False if not.</returns>
+        private bool validCredentials()
+        {
+            if (txtRegUsername.Text.Length == 0 || txtRegPassword.Text.Length == 0)
+            {
+                lblStatus.Text = "Please ensure username and password fields contain text!";
+                errorProviderLogin.SetError(btnRegister, "Invalid username and/or password detected!");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Searches through the desired table to ensure that the user's
+        /// username is not contianed in said table.
+        /// </summary>
+        /// <returns>1 if there is a match, 0 if not.</returns>
+        private int searchForMatch()
+        {
+            connection.Open();
+            cmd = new SQLiteCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@Username", txtRegUsername.Text);
+            int linesCounted = Convert.ToInt32(cmd.ExecuteScalar());
+            connection.Close();
+
+            return linesCounted;
+        }
+
+        /// <summary>
+        /// Inserts the user's credentials into the Register Official table.
+        /// </summary>
+        private void register()
+        {
+            sql = "INSERT INTO RegisterOfficial(Username, Password) Values (@Username, @Password)";
+
+            connection.Open();
+            cmd = new SQLiteCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@Username", txtRegUsername.Text);
+            cmd.Parameters.AddWithValue("@Password", txtRegPassword.Text);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            lblStatus.Text = "Username: " + txtRegUsername.Text + " is awaiting approval!";
         }
     }
 }

@@ -76,9 +76,12 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
             string name = txtSearchPlayerName.Text;
-            connection.Open();
+            lblStatus.Text = "Search Results for: " + name;
+            
             sql = "Select Name, Position, School, Standing FROM StudentFootballPlayer WHERE Name ";
+            connection.Open();
 
             if (radExactMatch.Checked) sql +=  "= \'" + name + "\'";
             else if(radSimilarMatch.Checked) sql += "LIKE '%" + name + "%'";
@@ -118,6 +121,8 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void btnShowAll_Click(object sender, EventArgs e)
         {
+            lblStatus.Text = "Displaying all players!";
+
             connection.Open();
             sql = "SELECT Name, School, Standing, Position FROM StudentFootballPlayer";
 
@@ -221,6 +226,7 @@ namespace CS292_FinalProject_BenSchmidt
             this.Hide();
             login.ShowDialog();
             resetControls();
+            lblStatus.Text = "";
             this.Show();
         }
 
