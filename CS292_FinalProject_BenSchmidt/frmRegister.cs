@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Name: Ben Schmidt
+ * Project: Final Project
+ * Date: 4/26/2017
+ */
+
+using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SQLite;
@@ -19,6 +25,12 @@ namespace CS292_FinalProject_BenSchmidt
 
         public frmRegister() { InitializeComponent(); }
 
+        /// <summary>
+        /// Displays all of the registered users to the 
+        /// register data grid view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmRegister_Load(object sender, EventArgs e)
         {
             username = password = "";
@@ -32,6 +44,12 @@ namespace CS292_FinalProject_BenSchmidt
             dgvRegister.ClearSelection();
         }
 
+        /// <summary>
+        /// When clicked, adds a registered user to the 
+        /// league officials table.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if(!validateSelected())
@@ -53,6 +71,12 @@ namespace CS292_FinalProject_BenSchmidt
             remove();
         }
 
+        /// <summary>
+        /// When clicked, removes a registered user from the
+        /// registered official table.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (!validateSelected())
@@ -65,6 +89,9 @@ namespace CS292_FinalProject_BenSchmidt
             remove();
         }
 
+        /// <summary>
+        /// Removes a certain user from the registered official table.
+        /// </summary>
         private void remove()
         {
             sql = "DELETE FROM RegisterOfficial WHERE Username = @Username";
@@ -78,14 +105,29 @@ namespace CS292_FinalProject_BenSchmidt
             frmRegister_Load(null, null);
         }
 
+        /// <summary>
+        /// Ensures the user selected a row that
+        /// contains a username and password.
+        /// </summary>
+        /// <returns></returns>
         private bool validateSelected()
         {
             if (username.Equals("") || password.Equals("")) return false; 
             return true;
         }
 
+        /// <summary>
+        /// Exits the current form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e) { Close(); }
 
+        /// <summary>
+        /// Obtains the username and password from the currently selected row.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvRegister_SelectionChanged(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvRegister.SelectedRows)

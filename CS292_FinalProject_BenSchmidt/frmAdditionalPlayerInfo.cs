@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Name: Ben Schmidt
+ * Project: Final Project
+ * Date: 4/26/2017
+ */
+
+using System;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
@@ -7,12 +13,8 @@ namespace CS292_FinalProject_BenSchmidt
     public partial class frmAdditionalPlayerInfo : Form
     {
         private const string DB_FOOTBALL = "Data Source = ../../highSchoolFootball.db; Version = 3";
+        private Player player;
         private bool isEdit;
-        private int id;
-        private string name;
-        private string school;
-        private string standing;
-        private string position;
         private bool inputIsNotValid;
 
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
@@ -39,12 +41,11 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="choice"></param>
         public void setEdit(bool choice) { isEdit = choice; }
         
-        // Setters for id, name, school, standing, and position.
-        public void setID(int newID) { id = newID; }
-        public void setName(string newName) { name = newName; }
-        public void setSchool(string newSchool) { school = newSchool; }
-        public void setStanding(string newStanding) { standing = newStanding; }
-        public void setPosition(string newPosition) { position = newPosition; }
+        /// <summary>
+        /// Obtains essential player information from the officials form.
+        /// </summary>
+        /// <param name="newPlayer"></param>
+        public void setPlayer(Player newPlayer) { player = newPlayer; }
 
         /// <summary>
         /// Clears all of the textboxes on the form.
@@ -134,7 +135,7 @@ namespace CS292_FinalProject_BenSchmidt
                 "\"Kick Yards\" = @kickYards, Touchbacks = @touchbacks WHERE Id = @id";
             connection.Open();
             command = new SQLiteCommand(sql, connection);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@id", player.Id);
             setParameters();
 
             command.ExecuteNonQuery();
@@ -171,10 +172,10 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         private void setParameters()
         {
-            command.Parameters.AddWithValue("@name", name);
-            command.Parameters.AddWithValue("@school", school);
-            command.Parameters.AddWithValue("@standing", standing);
-            command.Parameters.AddWithValue("@position", position);
+            command.Parameters.AddWithValue("@name", player.Name);
+            command.Parameters.AddWithValue("@school", player.School);
+            command.Parameters.AddWithValue("@standing", player.Standing);
+            command.Parameters.AddWithValue("@position", player.Position);
             command.Parameters.AddWithValue("@passingYards", txtPassingYards.Text);
             command.Parameters.AddWithValue("@passAttempts", txtPassingAttempts.Text);
             command.Parameters.AddWithValue("@passCompletions", txtPassingCompletions.Text);

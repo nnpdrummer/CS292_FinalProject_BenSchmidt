@@ -1,8 +1,7 @@
 ﻿/*
  * Name: Ben Schmidt
  * Project: Final Project
- * Date:
- * Purpose:
+ * Date: 4/26/2017
  */
 
 using System;
@@ -26,6 +25,11 @@ namespace CS292_FinalProject_BenSchmidt
         private DataSet dataSet;
         private string sql;
 
+        private string name;
+        private string position;
+        private string school;
+        private string standing;
+
         public frmOfficials() { InitializeComponent(); }
 
         /// <summary>
@@ -44,7 +48,7 @@ namespace CS292_FinalProject_BenSchmidt
         private void frmOfficials_Load(object sender, EventArgs e)
         {
             populateComboBoxes();
-            btnShowAll_Click(null, null);
+            showAllToolStripMenuItem_Click(null, null);
         }
 
         /// <summary>
@@ -82,6 +86,8 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void radSearch_CheckedChanged(object sender, EventArgs e)
         {
+            clearControls();
+
             cboPosition.Enabled = true;
             cboSchool.Enabled = true;
             cboStanding.Enabled = true;
@@ -99,6 +105,8 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void radAdd_CheckedChanged(object sender, EventArgs e)
         {
+            clearControls();
+
             cboPosition.Enabled = true;
             cboSchool.Enabled = true;
             cboStanding.Enabled = true;
@@ -116,6 +124,8 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void radEdit_CheckedChanged(object sender, EventArgs e)
         {
+            clearControls();
+
             cboPosition.Enabled = true;
             cboSchool.Enabled = true;
             cboStanding.Enabled = true;
@@ -133,12 +143,27 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void radRemove_CheckedChanged(object sender, EventArgs e)
         {
+            clearControls();
+
             cboPosition.Enabled = false;
             cboSchool.Enabled = false;
             cboStanding.Enabled = false;
             txtPlayerID.Enabled = true;
             txtSearchPlayerName.Enabled = false;
+            chkExactMatch.Enabled = false;
             btnPlayerInfoCRUD.Text = "Remove existing player";
+        }
+
+        /// <summary>
+        /// Clears all of the search controls on the form.
+        /// </summary>
+        private void clearControls()
+        {
+            cboPosition.SelectedIndex = -1;
+            cboSchool.SelectedIndex = -1;
+            cboStanding.SelectedIndex = -1;
+            txtPlayerID.Text = "";
+            txtSearchPlayerName.Text = "";
         }
 
         /// <summary>
@@ -151,9 +176,9 @@ namespace CS292_FinalProject_BenSchmidt
         private void btnPlayerInfoCRUD_Click(object sender, EventArgs e)
         {
             errorProviderOfficials.Clear();
-            if(radSearch.Checked) searchDatabase();
-            else if(radAdd.Checked) addToDatabase();
-            else if(radEdit.Checked) editDatabase();
+            if (radSearch.Checked) searchDatabase();
+            else if (radAdd.Checked) addToDatabase();
+            else if (radEdit.Checked) editDatabase();
             else removeFromDatabase();
         }
 
@@ -200,14 +225,15 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         private void addToDatabase()
         {
+            if (checkPlayerInfo()) return;
+            getInput();
+            Player playerToAdd = new Player(name, position, school, standing);
+
             frmAdditionalPlayerInfo aPI = new frmAdditionalPlayerInfo();
             aPI.setEdit(false);
-            if (checkPlayerInfo()) return;
-            aPI.setName(txtSearchPlayerName.Text);
-            aPI.setPosition(cboPosition.SelectedItem.ToString());
-            aPI.setSchool(cboSchool.SelectedItem.ToString());
-            aPI.setStanding(cboStanding.SelectedItem.ToString());
-            aPI.ShowDialog();
+            aPI.setPlayer(playerToAdd);
+            aPI.Show();
+            
             lblStatus.Text = "You have successfully added a player from the database!";
         }
 
@@ -224,17 +250,29 @@ namespace CS292_FinalProject_BenSchmidt
                 lblStatus.Text = "Entered player ID does not belong to an existing player!";
                 return;
             }
+            if (checkPlayerInfo()) return;
+
+            int id = int.Parse(txtPlayerID.Text);
+            getInput();
+            Player playerToEdit = new Player(id, name, position, school, standing);
+
             frmAdditionalPlayerInfo aPI = new frmAdditionalPlayerInfo();
             aPI.setEdit(true);
-            aPI.setID(int.Parse(txtPlayerID.Text));
-            if (checkPlayerInfo()) return;
-            aPI.setName(txtSearchPlayerName.Text);
-            aPI.setPosition(cboPosition.SelectedItem.ToString());
-            aPI.setSchool(cboSchool.SelectedItem.ToString());
-            aPI.setStanding(cboStanding.SelectedItem.ToString());
-            aPI.ShowDialog();
-
+            aPI.setPlayer(playerToEdit);
+            aPI.Show();
+            
             lblStatus.Text = "You have successfully edited a player from the database!";
+        }
+
+        /// <summary>
+        /// Obtains all player information from the controls on this form.
+        /// </summary>
+        private void getInput()
+        {
+            name = txtSearchPlayerName.Text;
+            position = cboPosition.SelectedItem.ToString();
+            school = cboSchool.SelectedItem.ToString();
+            standing = cboStanding.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -249,17 +287,17 @@ namespace CS292_FinalProject_BenSchmidt
                 errorProviderOfficials.SetError(txtSearchPlayerName, "Please enter the player's name!");
                 return true;
             }
-            if (cboPosition.SelectedIndex == 0)
+            if (cboPosition.SelectedIndex == -1)
             {
                 errorProviderOfficials.SetError(cboPosition, "Please enter the player's position!");
                 return true;
             }
-            if (cboSchool.SelectedIndex == 0)
+            if (cboSchool.SelectedIndex == -1)
             {
                 errorProviderOfficials.SetError(cboSchool, "Please enter the player's school!");
                 return true;
             }
-            if (cboStanding.SelectedIndex == 0)
+            if (cboStanding.SelectedIndex == -1)
             {
                 errorProviderOfficials.SetError(cboStanding, "Please enter the player's class standing!");
                 return true;
@@ -293,22 +331,10 @@ namespace CS292_FinalProject_BenSchmidt
             command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
             connection.Close();
-
+            
             lblStatus.Text = "Player: " + id + " was removed from database!";
         }
-
-        /// <summary>
-        /// Displays all of the players to the player data grid view.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnShowAll_Click(object sender, EventArgs e)
-        {
-            connection.Open();
-            sql = "SELECT * FROM StudentFootballPlayer";
-            fillDataGridTable();
-        }
-
+        
         /// <summary>
         /// Queries all players and their associated stats depending 
         /// on the position selected in the position combo box.
@@ -319,7 +345,7 @@ namespace CS292_FinalProject_BenSchmidt
         {
             if (!radSearch.Checked || cboPosition.SelectedIndex == -1) return;
             string position = cboPosition.SelectedItem.ToString();
-            connection.Open();
+
             sql = "Select Id, Name, Position, School, Standing";
             switch (position)
             {
@@ -340,8 +366,6 @@ namespace CS292_FinalProject_BenSchmidt
                 case "K": case "P":
                     sql += ", \"Field Goals Attempted\", \"Field Goals Made\", \"Punt Yards\", \"Kick Yards\", \"Touchbacks\" ";
                     break;
-                default:
-                    break;
             }
             sql += " FROM StudentFootballPlayer WHERE Position = \'" + position + "\'";
 
@@ -358,7 +382,7 @@ namespace CS292_FinalProject_BenSchmidt
         {
             if (!radSearch.Checked || cboSchool.SelectedIndex == -1) return;
             string school = cboSchool.SelectedItem.ToString();
-            connection.Open();
+
             sql = "Select Id, Name, Position, School, Standing" +
                 " FROM StudentFootballPlayer WHERE School = \'" + school + "\'";
 
@@ -375,7 +399,7 @@ namespace CS292_FinalProject_BenSchmidt
         {
             if (!radSearch.Checked || cboStanding.SelectedIndex == -1) return;
             string standing = cboStanding.SelectedItem.ToString();
-            connection.Open();
+
             sql = "Select Id, Name, Position, School, Standing" +
                 " FROM StudentFootballPlayer WHERE Standing = \'" + standing + "\'";
 
@@ -388,6 +412,7 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         private void fillDataGridTable()
         {
+            connection.Open();
             dataSet = new DataSet();
             dataAdapter = new SQLiteDataAdapter(sql, connection);
             dataAdapter.Fill(dataSet);
@@ -437,7 +462,12 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void showAllToolStripMenuItem_Click(object sender, EventArgs e) { btnShowAll_Click(null, null); }
+        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clearControls();
+            sql = "SELECT * FROM StudentFootballPlayer";
+            fillDataGridTable();
+        }
 
         /// <summary>
         /// TODO: Create implementation later.

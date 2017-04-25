@@ -1,8 +1,7 @@
 ﻿/*
  * Name: Ben Schmidt
  * Project: Final Project
- * Date:
- * Purpose:
+ * Date: 4/26/2017
  */
 
 using System;
