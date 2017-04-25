@@ -437,10 +437,7 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            btnShowAll_Click(null, null);
-        }
+        private void showAllToolStripMenuItem_Click(object sender, EventArgs e) { btnShowAll_Click(null, null); }
 
         /// <summary>
         /// TODO: Create implementation later.
@@ -449,7 +446,8 @@ namespace CS292_FinalProject_BenSchmidt
         /// <param name="e"></param>
         private void addOfficialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmRegister register = new frmRegister();
+            register.ShowDialog();
         }
 
         /// <summary>
@@ -457,9 +455,6 @@ namespace CS292_FinalProject_BenSchmidt
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e) { Close(); }
     }
 }

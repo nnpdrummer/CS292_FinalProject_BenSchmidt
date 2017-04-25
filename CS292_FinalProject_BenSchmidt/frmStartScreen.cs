@@ -23,7 +23,7 @@ namespace CS292_FinalProject_BenSchmidt
         private SQLiteConnection connection = new SQLiteConnection(DB_FOOTBALL);
         private SQLiteDataAdapter dataAdapter;
         private DataSet dataSet;
-        private String sql;
+        private string sql;
 
         public frmStartScreen() { InitializeComponent(); }
 
@@ -98,6 +98,7 @@ namespace CS292_FinalProject_BenSchmidt
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetControls();
+            btnShowAll_Click(null, null);
             lblStatus.Text = "Search Filters cleared!";
         }
 
